@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  Recto-Verso
+//  Mega Recto-Verso
 //
-//  Created by eleves on 17-11-02.
-//  Copyright © 2017 Reverso-Softissimo. All rights reserved.
+//  Created by eleves on 17-11-01.
+//  Copyright © 2017 eleves. All rights reserved.
 //
 
 import UIKit
