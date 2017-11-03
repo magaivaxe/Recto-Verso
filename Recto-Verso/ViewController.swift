@@ -1,52 +1,27 @@
-//
-//  ViewController.swift
-//  Mega Recto-Verso
-//
-//  Created by eleves on 17-11-01.
-//  Copyright © 2017 eleves. All rights reserved.
-//
 
+
+//----------- Librarys -----------
 import UIKit
+import Foundation
+//--------------------------------
 
 class ViewController: UIViewController,
-					  UITableViewDelegate, UITableViewDataSource,
 					  UIPickerViewDelegate, UIPickerViewDataSource
 {
 	
-//----- TableView configuration ----
-
-//- Number of lines-
-	func tableView(_ tableView: UITableView,
-	               numberOfRowsInSection section: Int) -> Int
-	{
-		return 20
-	}
-//------------------
-
-//- Cell configuration -
-	func tableView(_ tableView: UITableView,
-	               cellForRowAt indexPath: IndexPath) -> UITableViewCell
-	{
-		let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default,
-		                                            reuseIdentifier: nil)
-		cell.textLabel?.text = ""
-		
-		return cell
-	}
-//--------------------------------
-
 //--------- PickerView -----------
 
-//- Number of total row -
+//- Number of display rows -
 	func numberOfComponents(in pickerView: UIPickerView) -> Int
 	{
-		let numberOfRows = 26
-		return numberOfRows
+		let numberOfRowsColumns = 1
+		return numberOfRowsColumns
 	}
 //-----------------------
 
 //- Number of Datas -
-	func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
+	func pickerView(_ pickerView: UIPickerView,
+	                numberOfRowsInComponent component: Int) -> Int
 	{
 		let numberOfDatas = 26
 		return numberOfDatas
@@ -54,9 +29,6 @@ class ViewController: UIViewController,
 //-------------------
 
 //--------------------------------
-	
-	
-//============ VIEW 1 ==============
 
 //------------ Outlets -------------
 	@IBOutlet weak var logo: UIImageView!
@@ -66,54 +38,31 @@ class ViewController: UIViewController,
 	@IBOutlet weak var pick_word: UIPickerView!
 	@IBOutlet weak var definitions_1: UITextView!
 //----------------------------------
-
-//==================================
 	
-//============ VIEW 2 ==============
-
-//------------ Outlets -------------
-	@IBOutlet weak var seg_control_2: UISegmentedControl!
-	@IBOutlet weak var definitions_2: UITextView!
-	@IBOutlet weak var add_words: UITextField!
-	@IBOutlet weak var add_definitions: UITextField!
-	@IBOutlet weak var edit: UIButton!
-	@IBOutlet weak var erase: UIButton!
-	@IBOutlet weak var add: UIButton!
-	@IBOutlet weak var go_dictionary: UIButton!
-	@IBOutlet weak var table_view: UITableView!
-//----------------------------------
+//----------- Variables ------------
+	var dictOfLetters = [Int:String]()			/* Letters to pick */
+	
+	var dictOfFrenchWords = [Int:String]()
+	var dictOfEnglishWords = [Int:String]()
+	
+	var dictOfFrenchDefinitions = [Int:String]()
+	var dictOfEnglishDefinitions = [Int:String]()
 	
 //----------------------------------
-
-//==================================
-	
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
 		
 	//-- Styles --
-		let styles = Styles()
-		
-		styles.styleSegmentedControl(segmentedControl: seg_control_1,
-	                             	radius: 10,
-									borderWidth: 1.2,
-								    borderColor: UIColor.lightGray.cgColor,
-								    bgColor: UIColor.white.cgColor)
-		
-		styles.styleSegmentedControl(segmentedControl: seg_control_2,
-		                             radius: 10,
-		                             borderWidth: 1.2,
-		                             borderColor: UIColor.lightGray.cgColor,
-		                             bgColor: UIColor.white.cgColor)
-		
-		
-	
-	
+		//let styles = Styles()
 		
 	//------------
 		
-		
-		
+	/*
+		Charger ici le pick_letter inicialisé par la lettre a, le database des mots déjà existant, la definitions de la mot affichée
+
+
+	*/
 		
 		
 		

@@ -5,23 +5,6 @@ import UIKit
 
 class Styles
 {
-	func styleUITextViews(textView tv: UITextView,
-	                    radius r: CGFloat,
-	                    font f: UIFont,
-	                    fontSize fs: CGFloat,
-	                    borderWidth bw: CGFloat,
-	                    borderColor bc: CGColor,
-	                    bgColor bg: CGColor!)
-	{
-		tv.clipsToBounds = true
-		tv.font?.withSize(fs)
-		tv.font = f
-		tv.layer.cornerRadius = r
-		tv.layer.borderWidth = bw
-		tv.layer.borderColor = bc
-		tv.layer.backgroundColor = bg
-	}
-	
 	func styleUIButtons(button b: UIButton,
 	                    radius r: CGFloat,
 	                    borderWidth bw: CGFloat,
@@ -36,24 +19,45 @@ class Styles
 		b.layer.backgroundColor = bg
 	}
 	
-	func styleSegmentedControl(segmentedControl sc: UISegmentedControl,
-	                           radius r: CGFloat,
-	                           borderWidth bw: CGFloat,
-	                           borderColor bc: CGColor,
-	                           bgColor bg: CGColor!)
+	func styleUISegmentedControl(segmentedControl sc: UISegmentedControl,
+	                             radius r: CGFloat,
+	                             borderWidth bw: CGFloat,
+	                             tintColor tc: UIColor,
+	                             borderColor bc: CGColor,
+	                             bgColor bg: CGColor!)
 	{
 		sc.clipsToBounds = true
 		sc.layer.cornerRadius = r
 		sc.layer.borderWidth = bw
 		sc.layer.borderColor = bc
+		sc.tintColor = tc
 		sc.layer.backgroundColor = bg
 	}
 	
-	func styleTableView(tableView tv: UITableView,
-	                    radius r: CGFloat,
-	                    borderWidth bw: CGFloat,
-	                    borderColor bc: CGColor,
-	                    bgColor bg: CGColor!)
+	func styleUITextViews(textView tv: UITextView,
+	                      radius r: CGFloat,
+	                      font f: UIFont,
+	                      fontSize fs: CGFloat,
+	                      textColor tc: UIColor,
+	                      borderWidth bw: CGFloat,
+	                      borderColor bc: CGColor,
+	                      bgColor bg: CGColor!)
+	{
+		tv.clipsToBounds = true
+		tv.font?.withSize(fs)
+		tv.font = f
+		tv.textColor = tc
+		tv.layer.cornerRadius = r
+		tv.layer.borderWidth = bw
+		tv.layer.borderColor = bc
+		tv.layer.backgroundColor = bg
+	}
+	
+	func styleUITableView(tableView tv: UITableView,
+	                      radius r: CGFloat,
+	                      borderWidth bw: CGFloat,
+	                      borderColor bc: CGColor,
+	                      bgColor bg: CGColor!)
 	{
 		tv.clipsToBounds = true
 		tv.layer.cornerRadius = r
@@ -62,13 +66,13 @@ class Styles
 		tv.layer.backgroundColor = bg
 	}
 	
-	func styleTextField(textView tv: UITextView,
-	                    font f: UIFont,
-	                    fontSize fs: CGFloat,
-	                    radius r: CGFloat,
-	                    borderWidth bw: CGFloat,
-	                    borderColor bc: CGColor,
-	                    bgColor bg: CGColor!)
+	func styleUITextField(textView tv: UITextView,
+	                      font f: UIFont,
+	                      fontSize fs: CGFloat,
+	                      radius r: CGFloat,
+	                      borderWidth bw: CGFloat,
+	                      borderColor bc: CGColor,
+	                      bgColor bg: CGColor!)
 	{
 		tv.clipsToBounds = true
 		tv.font = f
@@ -78,24 +82,6 @@ class Styles
 		tv.layer.borderColor = bc
 		tv.layer.backgroundColor = bg
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
 

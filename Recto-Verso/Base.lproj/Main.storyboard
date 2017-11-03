@@ -32,7 +32,7 @@
                                     <segue destination="aJK-8H-2lc" kind="presentation" identifier="seg_view2" id="wQx-Hm-sqy"/>
                                 </connections>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zw6-e7-h2r" userLabel="seg_control">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zw6-e7-h2r" userLabel="seg_control_1">
                                 <rect key="frame" x="39" y="126" width="296" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
@@ -41,7 +41,7 @@
                                 </segments>
                                 <color key="tintColor" red="0.32575226610000002" green="0.78030401380000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </segmentedControl>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cga-Ty-qZh" userLabel="pick_letter">
+                            <pickerView tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cga-Ty-qZh" userLabel="pick_letter">
                                 <rect key="frame" x="39" y="181" width="154" height="79"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
@@ -49,7 +49,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="JWR-Q4-gfL"/>
                                 </connections>
                             </pickerView>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uLo-QH-2lG" userLabel="pick_word">
+                            <pickerView tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uLo-QH-2lG" userLabel="pick_word">
                                 <rect key="frame" x="212" y="181" width="123" height="79"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
@@ -84,12 +84,12 @@
         <!--View2-->
         <scene sceneID="oT5-gH-P8i">
             <objects>
-                <viewController id="aJK-8H-2lc" userLabel="View2" customClass="ViewController" customModule="Recto_Verso" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="aJK-8H-2lc" userLabel="View2" customClass="ViewController2" customModule="Recto_Verso" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="42e-IV-gV8" userLabel="main">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lBQ-1G-KuA" userLabel="dictionaire">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lBQ-1G-KuA" userLabel="go_dictionary">
                                 <rect key="frame" x="307" y="0.0" width="59" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -97,7 +97,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="seg_view1" id="UrG-Z5-9ib"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" id="zSg-6D-IdA"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XaT-kd-MqD" userLabel="add_words">
@@ -127,8 +127,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="aJK-8H-2lc" id="us8-Gx-3a5"/>
-                                    <outlet property="delegate" destination="aJK-8H-2lc" id="0K0-Tx-a3K"/>
+                                    <outlet property="dataSource" destination="aJK-8H-2lc" id="VYs-b8-bmS"/>
+                                    <outlet property="delegate" destination="aJK-8H-2lc" id="QaU-LQ-Qyj"/>
                                 </connections>
                             </tableView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PM8-G4-Xkj" userLabel="definitions_2">
@@ -154,7 +154,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="x4d-ma-mue" userLabel="seg_control">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="x4d-ma-mue" userLabel="seg_control_2">
                                 <rect key="frame" x="31" y="13" width="268" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
@@ -167,15 +167,15 @@
                         <viewLayoutGuide key="safeArea" id="T7M-P9-1SU"/>
                     </view>
                     <connections>
-                        <outlet property="add" destination="c6Z-eI-L3o" id="omf-hm-8BN"/>
-                        <outlet property="add_definitions" destination="cyC-QV-pek" id="WdM-Yf-pmv"/>
-                        <outlet property="add_words" destination="XaT-kd-MqD" id="s7j-lA-Wur"/>
-                        <outlet property="definitions_2" destination="PM8-G4-Xkj" id="KaY-bq-S89"/>
-                        <outlet property="edit" destination="iNj-gR-2In" id="juj-be-dDP"/>
-                        <outlet property="erase" destination="vqd-6H-iA6" id="vMI-e1-72d"/>
-                        <outlet property="go_dictionary" destination="lBQ-1G-KuA" id="7Go-Ni-0u9"/>
-                        <outlet property="seg_control_2" destination="x4d-ma-mue" id="cBk-lD-oBO"/>
-                        <outlet property="table_view" destination="uwR-Qp-bGN" id="qWu-Pj-MWm"/>
+                        <outlet property="add" destination="c6Z-eI-L3o" id="MQE-Jd-P5S"/>
+                        <outlet property="add_definitions" destination="cyC-QV-pek" id="blL-vY-cYm"/>
+                        <outlet property="add_words" destination="XaT-kd-MqD" id="8p6-Pl-oqU"/>
+                        <outlet property="definitions_2" destination="PM8-G4-Xkj" id="h2w-DG-PnB"/>
+                        <outlet property="edit" destination="iNj-gR-2In" id="KaJ-lm-j2J"/>
+                        <outlet property="erase" destination="vqd-6H-iA6" id="ukc-xG-gab"/>
+                        <outlet property="go_dictionary" destination="lBQ-1G-KuA" id="9c1-F7-Mk1"/>
+                        <outlet property="seg_control_2" destination="x4d-ma-mue" id="k52-1w-FSs"/>
+                        <outlet property="table_view" destination="uwR-Qp-bGN" id="28h-ew-Est"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fhV-Li-z6l" sceneMemberID="firstResponder"/>
