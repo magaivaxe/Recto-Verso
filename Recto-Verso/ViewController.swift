@@ -8,9 +8,6 @@ import Foundation
 class ViewController: UIViewController,
 					  UIPickerViewDelegate, UIPickerViewDataSource
 {
-	
-
-
 //------------ Outlets -------------
 	@IBOutlet weak var logo: UIImageView!
 	@IBOutlet weak var go_insert_words: UIButton!
@@ -22,13 +19,6 @@ class ViewController: UIViewController,
 	
 //----------- Variables ------------
 	var dictOfLetters = [Int:String]()			/* Letters to pick */
-	
-	var dictOfFrenchWords = [Int:String]()
-	var dictOfEnglishWords = [Int:String]()
-	
-	var dictOfFrenchDefinitions = [Int:String]()
-	var dictOfEnglishDefinitions = [Int:String]()
-	
 //----------------------------------
 	override func viewDidLoad()
 	{
@@ -55,6 +45,7 @@ class ViewController: UIViewController,
 	//- Number of display rows -
 	func numberOfComponents(in pickerView: UIPickerView) -> Int
 	{
+		//if pickerView.tag == 1
 		return 1	/* Nombre des colonnes affiché au picker*/
 	}
 	//-----------------------
