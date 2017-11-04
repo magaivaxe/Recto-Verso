@@ -33,7 +33,7 @@
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zw6-e7-h2r" userLabel="seg_control_1">
-                                <rect key="frame" x="39" y="126" width="296" height="35"/>
+                                <rect key="frame" x="50" y="162" width="194" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Français"/>
@@ -42,23 +42,15 @@
                                 <color key="tintColor" red="0.32575226610000002" green="0.78030401380000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </segmentedControl>
                             <pickerView tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cga-Ty-qZh" userLabel="pick_letter">
-                                <rect key="frame" x="39" y="181" width="154" height="79"/>
+                                <rect key="frame" x="258" y="140" width="77" height="79"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="tfe-u1-LTr"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="JWR-Q4-gfL"/>
                                 </connections>
                             </pickerView>
-                            <pickerView tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uLo-QH-2lG" userLabel="pick_word">
-                                <rect key="frame" x="212" y="181" width="123" height="79"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="iNv-4c-uyZ"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="SCj-lI-fak"/>
-                                </connections>
-                            </pickerView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FnG-4k-CxD" userLabel="definitions_1">
-                                <rect key="frame" x="39" y="278" width="296" height="388.66666666666663"/>
+                                <rect key="frame" x="39" y="227" width="296" height="388.66666666666663"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -73,13 +65,12 @@
                         <outlet property="go_insert_words" destination="mm6-JY-C6J" id="MCN-5W-uMS"/>
                         <outlet property="logo" destination="Z8L-Qk-dXW" id="byT-H2-Ijy"/>
                         <outlet property="pick_letter" destination="Cga-Ty-qZh" id="nG4-Rc-FFR"/>
-                        <outlet property="pick_word" destination="uLo-QH-2lG" id="i6K-Yl-Hjb"/>
                         <outlet property="seg_control_1" destination="zw6-e7-h2r" id="3OX-CY-wx2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1161" y="-836"/>
+            <point key="canvasLocation" x="-1292" y="-836.13193403298362"/>
         </scene>
         <!--View2-->
         <scene sceneID="oT5-gH-P8i">
@@ -100,14 +91,14 @@
                                     <segue destination="BYZ-38-t0r" kind="presentation" id="zSg-6D-IdA"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XaT-kd-MqD" userLabel="add_words">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XaT-kd-MqD" userLabel="add_french">
                                 <rect key="frame" x="31" y="70" width="296" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cyC-QV-pek" userLabel="add_definitions">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cyC-QV-pek" userLabel="add_english">
                                 <rect key="frame" x="31" y="119" width="296" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
@@ -122,39 +113,8 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PM8-G4-Xkj" userLabel="definitions_2">
-                                <rect key="frame" x="31" y="411" width="296" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iNj-gR-2In">
-                                <rect key="frame" x="45" y="368" width="128" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="edit">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vqd-6H-iA6">
-                                <rect key="frame" x="181" y="368" width="128" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="erase">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="x4d-ma-mue" userLabel="seg_control_2">
-                                <rect key="frame" x="31" y="13" width="268" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Français"/>
-                                    <segment title="English"/>
-                                </segments>
-                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uwR-Qp-bGN" userLabel="table_view">
-                                <rect key="frame" x="31" y="232" width="296" height="128"/>
+                                <rect key="frame" x="31" y="232" width="296" height="401"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -168,19 +128,15 @@
                     </view>
                     <connections>
                         <outlet property="add" destination="c6Z-eI-L3o" id="MQE-Jd-P5S"/>
-                        <outlet property="add_definitions" destination="cyC-QV-pek" id="blL-vY-cYm"/>
-                        <outlet property="add_words" destination="XaT-kd-MqD" id="8p6-Pl-oqU"/>
-                        <outlet property="definitions_2" destination="PM8-G4-Xkj" id="h2w-DG-PnB"/>
-                        <outlet property="edit" destination="iNj-gR-2In" id="KaJ-lm-j2J"/>
-                        <outlet property="erase" destination="vqd-6H-iA6" id="ukc-xG-gab"/>
+                        <outlet property="add_english" destination="cyC-QV-pek" id="aIC-U7-X2F"/>
+                        <outlet property="add_french" destination="XaT-kd-MqD" id="mBJ-63-PVg"/>
                         <outlet property="go_dictionary" destination="lBQ-1G-KuA" id="9c1-F7-Mk1"/>
-                        <outlet property="seg_control_2" destination="x4d-ma-mue" id="k52-1w-FSs"/>
                         <outlet property="table_view" destination="uwR-Qp-bGN" id="28h-ew-Est"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fhV-Li-z6l" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-479" y="-836"/>
+            <point key="canvasLocation" x="-639.20000000000005" y="-831.63418290854577"/>
         </scene>
     </scenes>
 </document>

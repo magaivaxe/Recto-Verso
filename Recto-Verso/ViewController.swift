@@ -13,7 +13,6 @@ class ViewController: UIViewController,
 	@IBOutlet weak var go_insert_words: UIButton!
 	@IBOutlet weak var seg_control_1: UISegmentedControl!
 	@IBOutlet weak var pick_letter: UIPickerView!
-	@IBOutlet weak var pick_word: UIPickerView!
 	@IBOutlet weak var definitions_1: UITextView!
 //----------------------------------
 	
@@ -59,11 +58,7 @@ class ViewController: UIViewController,
 	}
 	//-------------------
 	
-	func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-		var data:[String] = []
-		return data[row] // retourner les titles au picker view utiliser un array
-						 // pour le remplir derivé du dictionaire
-	}
+	
 	
 	//--------------------------------
 	
