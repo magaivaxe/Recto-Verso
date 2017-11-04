@@ -9,26 +9,7 @@ class ViewController: UIViewController,
 					  UIPickerViewDelegate, UIPickerViewDataSource
 {
 	
-//--------- PickerView -----------
 
-//- Number of display rows -
-	func numberOfComponents(in pickerView: UIPickerView) -> Int
-	{
-		let numberOfRowsColumns = 1
-		return numberOfRowsColumns
-	}
-//-----------------------
-
-//- Number of Datas -
-	func pickerView(_ pickerView: UIPickerView,
-	                numberOfRowsInComponent component: Int) -> Int
-	{
-		let numberOfDatas = 26
-		return numberOfDatas
-	}
-//-------------------
-
-//--------------------------------
 
 //------------ Outlets -------------
 	@IBOutlet weak var logo: UIImageView!
@@ -65,15 +46,67 @@ class ViewController: UIViewController,
 	*/
 		
 		
-		
-		
-		
-		
-		
-		
 	}
 
-
+	/* Au travail AddUp il y a un exemple de pick l'utiliser pou comprendre */
+	
+	//--------- PickerView -----------
+	
+	//- Number of display rows -
+	func numberOfComponents(in pickerView: UIPickerView) -> Int
+	{
+		return 1	/* Nombre des colonnes affiché au picker*/
+	}
+	//-----------------------
+	
+	//- Number of Datas -
+	func pickerView(_ pickerView: UIPickerView,
+	                numberOfRowsInComponent component: Int) -> Int
+	{
+		return 3	// retourner le nombre des mots par lettre
+					// à la base de donnée par exemple data.count
+	}
+	//-------------------
+	
+	func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+		var data:[String] = []
+		return data[row] // retourner les titles au picker view utiliser un array
+						 // pour le remplir derivé du dictionaire
+	}
+	
+	//--------------------------------
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
 

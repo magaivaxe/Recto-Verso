@@ -42,7 +42,14 @@ class ViewController2: UIViewController,
 	@IBOutlet weak var go_dictionary: UIButton!
 	@IBOutlet weak var table_view: UITableView!
 //----------------------------------
+
+//----------- Variables ------------
+	var dictOfFrenchWords = [Int:String]()
+	var dictOfEnglishWords = [Int:String]()
 	
+	var dictOfFrenchDefinitions = [Int:String]()
+	var dictOfEnglishDefinitions = [Int:String]()
+//----------------------------------
 
     override func viewDidLoad()
 	{
