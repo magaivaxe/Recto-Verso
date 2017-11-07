@@ -13,6 +13,7 @@
 		9B3A9BB51FAB4F8F00505DE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B3A9BB41FAB4F8F00505DE0 /* Assets.xcassets */; };
 		9B3A9BB81FAB4F8F00505DE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B3A9BB61FAB4F8F00505DE0 /* LaunchScreen.storyboard */; };
 		9BE546C81FAB65C3007F23AB /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE546C71FAB65C3007F23AB /* Styles.swift */; };
+		BF49FC721FB1310800FE1CA0 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF49FC711FB1310800FE1CA0 /* UserDefaultsManager.swift */; };
 		BFD42FC91FAC33AF002C4DE1 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD42FC81FAC33AF002C4DE1 /* ViewController2.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		9B3A9BB71FAB4F8F00505DE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B3A9BB91FAB4F8F00505DE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BE546C71FAB65C3007F23AB /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		BF49FC711FB1310800FE1CA0 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		BFD42FC81FAC33AF002C4DE1 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,6 +60,7 @@
 		9B3A9BAC1FAB4F8F00505DE0 /* Recto-Verso */ = {
 			isa = PBXGroup;
 			children = (
+				BF49FC711FB1310800FE1CA0 /* UserDefaultsManager.swift */,
 				9B3A9BAD1FAB4F8F00505DE0 /* AppDelegate.swift */,
 				9B3A9BAF1FAB4F8F00505DE0 /* ViewController.swift */,
 				BFD42FC81FAC33AF002C4DE1 /* ViewController2.swift */,
@@ -143,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BE546C81FAB65C3007F23AB /* Styles.swift in Sources */,
+				BF49FC721FB1310800FE1CA0 /* UserDefaultsManager.swift in Sources */,
 				BFD42FC91FAC33AF002C4DE1 /* ViewController2.swift in Sources */,
 				9B3A9BB01FAB4F8F00505DE0 /* ViewController.swift in Sources */,
 				9B3A9BAE1FAB4F8F00505DE0 /* AppDelegate.swift in Sources */,
