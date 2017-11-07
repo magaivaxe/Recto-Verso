@@ -27,7 +27,27 @@ class ViewController: UIViewController,
 		super.viewDidLoad()
 		
 	//-- Styles --
-		//let styles = Styles()
+		let styles = Styles()
+		
+		styles.styleUIButtons(button: go_insert_words,
+							  radius: 10,
+							  borderWidth: 1.2,
+							  borderColor: UIColor.lightGray.cgColor,
+							  bgColor: UIColor.init(red: 0.149, green: 0.67, blue: 0.90, alpha: 0.8) as! CGColor)
+		styles.styleUISegmentedControl(segmentedControl: seg_control_1,
+									   radius: 10,
+									   borderWidth: 1.2,
+									   tintColor: UIColor.init(red: 0.149, green: 0.67, blue: 0.90, alpha: 0.8),
+									   borderColor: UIColor.lightGray.cgColor,
+									   bgColor: UIColor.white.cgColor)
+		styles.styleUITextViews(textView: definitions_1,
+								radius: 10,
+								font: UIFont(name: "Times", size: 20)!,
+								textColor: UIColor.black,
+								textAlignment: NSTextAlignment.left,
+								borderWidth: 1.2,
+								borderColor: UIColor.lightGray.cgColor,
+								bgColor: UIColor.init(red: 0.66, green: 0.71, blue: 0.72, alpha: 0.8) as! CGColor)
 		
 	//------------
 		
@@ -72,16 +92,26 @@ class ViewController: UIViewController,
 	//-------------------
 	
 	
-	func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-		<#code#>
+	func pickerView(_ pickerView: UIPickerView,
+					viewForRow row: Int,
+					forComponent component: Int,
+					reusing view: UIView?) -> UIView
+	{
+		let pickerlabel = UILabel()
+		
+		pickerlabel.textColor = UIColor.darkGray
+		pickerlabel.text = arrayOfLetters[row]
+		pickerlabel.font = UIFont(name: "Times", size: 20)
+		pickerlabel.textAlignment = NSTextAlignment.center
+		
+		return pickerlabel		/* Why return pickerlabel */
 	}
 	
-	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-		<#code#>
-	}
-	
-	func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-		<#code#>
+	func pickerView(_ pickerView: UIPickerView,
+					titleForRow row: Int,
+					forComponent component: Int) -> String?
+	{
+		return arrayOfLetters[row]			/* return to row any arrayOfLetters string  */
 	}
 	
 	

@@ -26,10 +26,41 @@ class ViewController2: UIViewController,
 
     override func viewDidLoad()
 	{
+		
+		
 		super.viewDidLoad()
 		
 	//-- Styles --
-		//let styles = Styles()
+		let styles = Styles()
+		
+		styles.styleUIButtons(button: add,
+							  radius: 10,
+							  borderWidth: 1.2,
+							  borderColor: UIColor.lightGray.cgColor,
+							  bgColor: UIColor.init(red: 0.149, green: 0.67, blue: 0.90, alpha: 0.8) as! CGColor)
+		styles.styleUIButtons(button: go_dictionary,
+							  radius: 10,
+							  borderWidth: 1.2,
+							  borderColor: UIColor.lightGray.cgColor,
+							  bgColor: UIColor.init(red: 0.149, green: 0.67, blue: 0.90, alpha: 0.8) as! CGColor)
+		
+		styles.styleUITextField(textField: add_french,
+								font: UIFont(name: "times", size: 20)!,
+								radius: 10,
+								borderWidth: 1.2,
+								borderColor: UIColor.lightGray.cgColor,
+								bgColor: UIColor.init(red: 0.149, green: 0.67, blue: 0.90, alpha: 0.8) as! CGColor)
+		styles.styleUITextField(textField: add_english,
+								font: UIFont(name: "times", size: 20)!,
+								radius: 10,
+								borderWidth: 1.2,
+								borderColor: UIColor.lightGray.cgColor,
+								bgColor: UIColor.init(red: 0.149, green: 0.67, blue: 0.90, alpha: 0.8) as! CGColor)
+		styles.styleUITableView(tableView: table_view,
+								radius: 10,
+								borderWidth: 1.2,
+								borderColor: UIColor.lightGray.cgColor,
+								bgColor: UIColor.init(red: 0.66, green: 0.71, blue: 0.72, alpha: 0.8) as! CGColor))
 		
 	//------------
 	
@@ -37,10 +68,25 @@ class ViewController2: UIViewController,
 		add_french.placeholder = "Inserez un mot..."
 		add_english.placeholder = "Insert a word..."
 	//---------------
+		
+	//-- Buttons --
+//		if viewcontroller.seg_control_1.selectedSegmentIndex == 0			/* french */
+//		{
+//			//add.setTitle("Ajouter", for: .normal)
+//			go_dictionary.setTitle("Retour", for: .normal)
+//		}
+//		else																/* anglais */
+//		{
+//			//add.setTitle("Add", for: .normal)
+//			go_dictionary.setTitle("Back", for: .normal)
+		//}
+	//-------------
+		
 	//-- Table View --
 		
 		
 	//----------------
+		
 	//-- Saves Menager --
 		loadSaves()
 	//-------------------

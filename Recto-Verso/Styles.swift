@@ -36,17 +36,17 @@ class Styles
 	
 	func styleUITextViews(textView tv: UITextView,
 	                      radius r: CGFloat,
-	                      font f: UIFont,
-	                      fontSize fs: CGFloat,
+						  font f: UIFont,
 	                      textColor tc: UIColor,
+						  textAlignment ta: NSTextAlignment,
 	                      borderWidth bw: CGFloat,
 	                      borderColor bc: CGColor,
 	                      bgColor bg: CGColor!)
 	{
 		tv.clipsToBounds = true
-		tv.font?.withSize(fs)
 		tv.font = f
 		tv.textColor = tc
+		tv.textAlignment = ta
 		tv.layer.cornerRadius = r
 		tv.layer.borderWidth = bw
 		tv.layer.borderColor = bc
@@ -66,9 +66,8 @@ class Styles
 		tv.layer.backgroundColor = bg
 	}
 	
-	func styleUITextField(textView tv: UITextView,
+	func styleUITextField(textField tv: UITextField,
 	                      font f: UIFont,
-	                      fontSize fs: CGFloat,
 	                      radius r: CGFloat,
 	                      borderWidth bw: CGFloat,
 	                      borderColor bc: CGColor,
@@ -76,7 +75,6 @@ class Styles
 	{
 		tv.clipsToBounds = true
 		tv.font = f
-		tv.font?.withSize(fs)
 		tv.layer.cornerRadius = r
 		tv.layer.borderWidth = bw
 		tv.layer.borderColor = bc
@@ -84,4 +82,23 @@ class Styles
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
