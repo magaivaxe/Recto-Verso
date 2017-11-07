@@ -18,9 +18,10 @@ class ViewController2: UIViewController,
 //----------------------------------
 
 //----------- Variables ------------
-	var dictRectoVerso = [String:String]()
-	var arrayFrenchWords = [String]()
-	var arrayEnglishWords = [String]()
+	var dictRectoVerso : [String:String]!
+	var arrayFrenchWords : [String]!
+	var arrayEnglishWords : [String]!
+	var file : String!
 //----------------------------------
 
     override func viewDidLoad()
@@ -40,9 +41,45 @@ class ViewController2: UIViewController,
 		
 		
 	//----------------
-	
-
+	//-- Saves Menager --
+		loadSaves()
+	//-------------------
     }
+	//-- Buttons --
+	@IBAction func add_words(_ sender: UIButton)
+	{
+		let save = SaveLoadMenager()			/* Load the class locally */
+		
+		arrayFrenchWords.append(add_french.text!)		/* append the words */
+		arrayEnglishWords.append(add_english.text!)
+		
+		save.save(theData: arrayFrenchWords as AnyObject, fileName: "french")
+		save.save(theData: arrayEnglishWords as AnyObject, fileName: "english")
+		
+	}
+	//-------------
+	
+	
+	//-- Saves Menager --
+	func loadSaves()
+	{
+		let load = SaveLoadMenager()			/* Load the class locally */
+		
+		if load.checkExistingSaves(fileName: "file")
+		{
+			/* Load the existing arrays */
+			arrayFrenchWords = load.loadData(fileName: "french") as! [String]
+			arrayEnglishWords = load.loadData(fileName: "english") as! [String]
+		}
+		else
+		{
+			/* Create the file and the arrays */
+			load.save(theData: file as AnyObject, fileName: "File")
+			arrayFrenchWords = [String]()
+			arrayEnglishWords = [String]()
+		}
+	}
+	//-------------------
 
 	
 //------------ TableView -----------
