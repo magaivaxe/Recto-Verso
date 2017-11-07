@@ -21,7 +21,7 @@ class ViewController2: UIViewController,
 	var dictRectoVerso : [String:String]!
 	var arrayFrenchWords : [String]!
 	var arrayEnglishWords : [String]!
-	var file : String!
+	var file = "file"
 //----------------------------------
 
     override func viewDidLoad()
@@ -96,10 +96,22 @@ class ViewController2: UIViewController,
 	func tableView(_ tableView: UITableView,
 	               cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
-		let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default,
-		                                            reuseIdentifier: nil)
-		cell.textLabel?.text = ""
+		let viewcontroler = ViewController()
 		
+		let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: nil)
+		
+		if viewcontroler.seg_control_1.selectedSegmentIndex == 0	/* french*/
+		{
+			dictRectoVerso = Dictionary(uniqueKeysWithValues: zip(arrayFrenchWords, arrayEnglishWords))
+			
+			cell.textLabel?.text = dictRectoVerso.description
+		}
+		else
+		{
+			dictRectoVerso = Dictionary(uniqueKeysWithValues: zip(arrayEnglishWords, arrayFrenchWords))
+			
+			cell.textLabel?.text = dictRectoVerso.description
+		}
 		return cell
 	}
 //--------------------------------

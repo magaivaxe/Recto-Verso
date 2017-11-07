@@ -40,6 +40,9 @@
                                     <segment title="English"/>
                                 </segments>
                                 <color key="tintColor" red="0.32575226610000002" green="0.78030401380000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="seg_french_english:" destination="BYZ-38-t0r" eventType="valueChanged" id="Ytk-dG-fHq"/>
+                                </connections>
                             </segmentedControl>
                             <pickerView tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cga-Ty-qZh" userLabel="pick_letter">
                                 <rect key="frame" x="258" y="140" width="77" height="79"/>

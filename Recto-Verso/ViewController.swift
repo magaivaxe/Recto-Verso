@@ -17,7 +17,10 @@ class ViewController: UIViewController,
 //----------------------------------
 	
 //----------- Variables ------------
-	var dictOfLetters = [Int:String]()			/* Letters to pick */
+	var arrayOfLetters = ["a", "b", "c", "d", "e", "f", "g",		/* Letters to pick */
+						  "h", "i", "j", "k", "l", "m", "n",
+						  "o", "q","r", "s", "t", "u", "v",
+						  "w", "x", "y", "z"]
 //----------------------------------
 	override func viewDidLoad()
 	{
@@ -28,18 +31,29 @@ class ViewController: UIViewController,
 		
 	//------------
 		
-	/*
-		Charger ici le pick_letter inicialisé par la lettre a, le database des mots déjà existant, la definitions de la mot affichée
-
-
-	*/
+	//-- Segmented Control --
+		go_insert_words.setTitle("+ mots", for: .normal)
+	//-----------------------
 		
 		
 	}
+	@IBAction func seg_french_english(_ sender: UISegmentedControl)
+	{
+		if seg_control_1.selectedSegmentIndex == 0  /* french */
+		{
+			go_insert_words.setTitle("+ mots", for: .normal)
+		}
+		else										/* english */
+		{
+			go_insert_words.setTitle("+ words", for: .normal)
+		}
+	}
+	
+	
 
 	/* Au travail AddUp il y a un exemple de pick l'utiliser pou comprendre */
 	
-	//--------- PickerView -----------
+	//======= PickerView =======
 	
 	//- Number of display rows -
 	func numberOfComponents(in pickerView: UIPickerView) -> Int
@@ -47,20 +61,31 @@ class ViewController: UIViewController,
 		//if pickerView.tag == 1
 		return 1	/* Nombre des colonnes affiché au picker*/
 	}
-	//-----------------------
+	//--------------------------
 	
 	//- Number of Datas -
 	func pickerView(_ pickerView: UIPickerView,
 	                numberOfRowsInComponent component: Int) -> Int
 	{
-		return 3	// retourner le nombre des mots par lettre
-					// à la base de donnée par exemple data.count
+		return arrayOfLetters.count 		/* array de a - z */
 	}
 	//-------------------
 	
 	
+	func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+		<#code#>
+	}
 	
-	//--------------------------------
+	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+		<#code#>
+	}
+	
+	func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+		<#code#>
+	}
+	
+	
+	//==========================
 	
 	
 	
