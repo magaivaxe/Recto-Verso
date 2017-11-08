@@ -30,50 +30,57 @@ class ViewController: UIViewController,
 		let styles = Styles()
 		
 		styles.styleUIButtons(button: go_insert_words,
+							  font: UIFont(name: "Times", size: 15)!,
+							  title: "+ Mots",
 							  radius: 10,
-							  borderWidth: 1.2,
+							  borderWidth: 1.4,
 							  borderColor: UIColor.lightGray.cgColor,
-							  bgColor: UIColor.init(red: 0.149, green: 0.67, blue: 0.90, alpha: 0.8) as! CGColor)
+							  bgColor: UIColor.init(red: 52/255, green: 153/255, blue: 245/255, alpha: 1).cgColor)
+		
 		styles.styleUISegmentedControl(segmentedControl: seg_control_1,
 									   radius: 10,
-									   borderWidth: 1.2,
-									   tintColor: UIColor.init(red: 0.149, green: 0.67, blue: 0.90, alpha: 0.8),
+									   borderWidth: 1.4,
+									   tintColor: UIColor.init(red: 52/255, green: 153/255, blue: 245/255, alpha: 1),
 									   borderColor: UIColor.lightGray.cgColor,
-									   bgColor: UIColor.white.cgColor)
+									   bgColor: UIColor.init(red: 208/255, green: 250/255, blue: 164/255, alpha: 1).cgColor)
+		
 		styles.styleUITextViews(textView: definitions_1,
 								radius: 10,
 								font: UIFont(name: "Times", size: 20)!,
 								textColor: UIColor.black,
 								textAlignment: NSTextAlignment.left,
-								borderWidth: 1.2,
+								borderWidth: 1.4,
 								borderColor: UIColor.lightGray.cgColor,
-								bgColor: UIColor.init(red: 0.66, green: 0.71, blue: 0.72, alpha: 0.8) as! CGColor)
+								bgColor: UIColor.init(red: 0.66, green: 0.71, blue: 0.72, alpha: 0.8).cgColor)
 		
 	//------------
 		
 	//-- Segmented Control --
-		go_insert_words.setTitle("+ mots", for: .normal)
+		
 	//-----------------------
-		
-		
 	}
+	
+	
+	//======= Segmentation Control ======================================================
+	
 	@IBAction func seg_french_english(_ sender: UISegmentedControl)
 	{
 		if seg_control_1.selectedSegmentIndex == 0  /* french */
 		{
-			go_insert_words.setTitle("+ mots", for: .normal)
+			go_insert_words.setTitle("+ Mots", for: .normal)
 		}
 		else										/* english */
 		{
-			go_insert_words.setTitle("+ words", for: .normal)
+			go_insert_words.setTitle("+ Words", for: .normal)
 		}
 	}
 	
+	//===================================================================================
 	
 
 	/* Au travail AddUp il y a un exemple de pick l'utiliser pou comprendre */
 	
-	//======= PickerView =======
+	//======= PickerView ================================================================
 	
 	//- Number of display rows -
 	func numberOfComponents(in pickerView: UIPickerView) -> Int
@@ -115,7 +122,7 @@ class ViewController: UIViewController,
 	}
 	
 	
-	//==========================
+	//===================================================================================
 	
 	
 	

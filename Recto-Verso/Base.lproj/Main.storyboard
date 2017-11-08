@@ -5,6 +5,8 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,13 +19,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z8L-Qk-dXW" userLabel="logo">
-                                <rect key="frame" x="16" y="20" width="217" height="102"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Z8L-Qk-dXW" userLabel="logo">
+                                <rect key="frame" x="17.5" y="20" width="261.5" height="101"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Z8L-Qk-dXW" secondAttribute="height" multiplier="263:102" id="OQ2-s7-rPI"/>
+                                </constraints>
                             </imageView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zw6-e7-h2r" userLabel="seg_control_1">
-                                <rect key="frame" x="27" y="137" width="194" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zw6-e7-h2r" userLabel="seg_control_1">
+                                <rect key="frame" x="17.5" y="136" width="261.5" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="zw6-e7-h2r" secondAttribute="height" multiplier="127:17" id="wDN-4q-8Xx"/>
+                                </constraints>
                                 <segments>
                                     <segment title="Français"/>
                                     <segment title="English"/>
@@ -33,25 +39,21 @@
                                     <action selector="seg_french_english:" destination="BYZ-38-t0r" eventType="valueChanged" id="Ytk-dG-fHq"/>
                                 </connections>
                             </segmentedControl>
-                            <pickerView tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cga-Ty-qZh" userLabel="pick_letter">
-                                <rect key="frame" x="266" y="115" width="77" height="79"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="tfe-u1-LTr"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="JWR-Q4-gfL"/>
-                                </connections>
-                            </pickerView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FnG-4k-CxD" userLabel="definitions_1">
-                                <rect key="frame" x="16" y="202" width="343" height="445"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FnG-4k-CxD" userLabel="definitions_1">
+                                <rect key="frame" x="17.5" y="202" width="340" height="440.5"/>
                                 <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="FnG-4k-CxD" secondAttribute="height" multiplier="343:445" id="fHa-gw-J6C"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mm6-JY-C6J" userLabel="insert_words">
-                                <rect key="frame" x="274" y="41" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mm6-JY-C6J" userLabel="insert_words">
+                                <rect key="frame" x="287.5" y="20" width="70" height="70"/>
                                 <color key="backgroundColor" red="0.32575226610000002" green="0.78030401380000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="mm6-JY-C6J" secondAttribute="height" multiplier="1:1" id="QYu-2a-J8m"/>
+                                </constraints>
                                 <state key="normal" title="+ mot">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -59,8 +61,35 @@
                                     <segue destination="aJK-8H-2lc" kind="presentation" identifier="seg_view2" id="wQx-Hm-sqy"/>
                                 </connections>
                             </button>
+                            <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cga-Ty-qZh" userLabel="pick_letter">
+                                <rect key="frame" x="287" y="114" width="70.5" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Cga-Ty-qZh" secondAttribute="height" multiplier="7:8" id="MJT-jP-YaZ"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="tfe-u1-LTr"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="JWR-Q4-gfL"/>
+                                </connections>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Z8L-Qk-dXW" firstAttribute="top" secondItem="mm6-JY-C6J" secondAttribute="top" id="Ayt-ac-ZrO"/>
+                            <constraint firstItem="FnG-4k-CxD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="B5L-2C-l0T"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="mm6-JY-C6J" secondAttribute="top" multiplier="33.35" constant="8" symbolic="YES" id="Bn9-IR-pVw"/>
+                            <constraint firstItem="Z8L-Qk-dXW" firstAttribute="width" secondItem="zw6-e7-h2r" secondAttribute="width" id="I81-fY-Bwo"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FnG-4k-CxD" secondAttribute="top" multiplier="3.3" id="KE8-4X-c4c"/>
+                            <constraint firstItem="zw6-e7-h2r" firstAttribute="leading" secondItem="FnG-4k-CxD" secondAttribute="leading" id="VWO-Ev-wXA"/>
+                            <constraint firstItem="zw6-e7-h2r" firstAttribute="centerY" secondItem="Cga-Ty-qZh" secondAttribute="centerY" id="db6-AR-8kl"/>
+                            <constraint firstItem="FnG-4k-CxD" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.66" id="fh1-rf-ntM"/>
+                            <constraint firstItem="mm6-JY-C6J" firstAttribute="width" secondItem="Cga-Ty-qZh" secondAttribute="width" id="fvk-ct-eRm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Cga-Ty-qZh" secondAttribute="top" multiplier="5.79" constant="8" symbolic="YES" id="n5K-ct-wzE"/>
+                            <constraint firstItem="Z8L-Qk-dXW" firstAttribute="leading" secondItem="zw6-e7-h2r" secondAttribute="leading" id="nVk-zx-J4h"/>
+                            <constraint firstItem="Cga-Ty-qZh" firstAttribute="trailing" secondItem="FnG-4k-CxD" secondAttribute="trailing" id="qhw-An-PN2"/>
+                            <constraint firstItem="mm6-JY-C6J" firstAttribute="trailing" secondItem="Cga-Ty-qZh" secondAttribute="trailing" id="r9K-kC-Wiu"/>
+                            <constraint firstItem="zw6-e7-h2r" firstAttribute="height" secondItem="Cga-Ty-qZh" secondAttribute="height" multiplier="0.437" id="vCW-be-CTb"/>
+                            <constraint firstItem="Cga-Ty-qZh" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.1199" id="zXe-Ks-k5U"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>

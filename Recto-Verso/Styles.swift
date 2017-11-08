@@ -6,17 +6,21 @@ import UIKit
 class Styles
 {
 	func styleUIButtons(button b: UIButton,
+						font f: UIFont,
+						title t: String,
 	                    radius r: CGFloat,
 	                    borderWidth bw: CGFloat,
 	                    borderColor bc: CGColor,
-	                    bgColor bg: CGColor!)
+	                    bgColor bg: CGColor?)
 	{
 		b.clipsToBounds = true
-		b.titleLabel?.adjustsFontForContentSizeCategory = true
 		b.layer.cornerRadius = r
 		b.layer.borderWidth = bw
 		b.layer.borderColor = bc
 		b.layer.backgroundColor = bg
+		b.titleLabel?.font = f
+		b.setTitle(t, for: .normal)
+		b.titleLabel?.adjustsFontSizeToFitWidth = true
 	}
 	
 	func styleUISegmentedControl(segmentedControl sc: UISegmentedControl,
@@ -24,7 +28,7 @@ class Styles
 	                             borderWidth bw: CGFloat,
 	                             tintColor tc: UIColor,
 	                             borderColor bc: CGColor,
-	                             bgColor bg: CGColor!)
+	                             bgColor bg: CGColor?)
 	{
 		sc.clipsToBounds = true
 		sc.layer.cornerRadius = r
@@ -41,7 +45,7 @@ class Styles
 						  textAlignment ta: NSTextAlignment,
 	                      borderWidth bw: CGFloat,
 	                      borderColor bc: CGColor,
-	                      bgColor bg: CGColor!)
+	                      bgColor bg: CGColor?)
 	{
 		tv.clipsToBounds = true
 		tv.font = f
@@ -57,7 +61,7 @@ class Styles
 	                      radius r: CGFloat,
 	                      borderWidth bw: CGFloat,
 	                      borderColor bc: CGColor,
-	                      bgColor bg: CGColor!)
+	                      bgColor bg: CGColor?)
 	{
 		tv.clipsToBounds = true
 		tv.layer.cornerRadius = r
@@ -71,7 +75,7 @@ class Styles
 	                      radius r: CGFloat,
 	                      borderWidth bw: CGFloat,
 	                      borderColor bc: CGColor,
-	                      bgColor bg: CGColor!)
+	                      bgColor bg: CGColor?)
 	{
 		tv.clipsToBounds = true
 		tv.font = f

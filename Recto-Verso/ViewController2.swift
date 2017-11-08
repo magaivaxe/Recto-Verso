@@ -33,34 +33,41 @@ class ViewController2: UIViewController,
 	//-- Styles --
 		let styles = Styles()
 		
-		styles.styleUIButtons(button: add,
-							  radius: 10,
-							  borderWidth: 1.2,
-							  borderColor: UIColor.lightGray.cgColor,
-							  bgColor: UIColor.init(red: 0.149, green: 0.67, blue: 0.90, alpha: 0.8) as! CGColor)
 		styles.styleUIButtons(button: go_dictionary,
+							  font: UIFont(name: "times", size: 15)!,
+							  title: "Retour/Back",
 							  radius: 10,
-							  borderWidth: 1.2,
+							  borderWidth: 1.4,
 							  borderColor: UIColor.lightGray.cgColor,
-							  bgColor: UIColor.init(red: 0.149, green: 0.67, blue: 0.90, alpha: 0.8) as! CGColor)
+							  bgColor: (UIColor.init(red: 52/255, green: 153/255, blue: 245/255, alpha: 1).cgColor))
+		
+		styles.styleUIButtons(button: add,
+							  font: UIFont(name: "times", size: 20)!,
+							  title: "Ajouter/Add",
+							  radius: 10,
+							  borderWidth: 1.4,
+							  borderColor: UIColor.lightGray.cgColor,
+							  bgColor: (UIColor.init(red: 52/255, green: 153/255, blue: 245/255, alpha: 1).cgColor))
 		
 		styles.styleUITextField(textField: add_french,
 								font: UIFont(name: "times", size: 20)!,
 								radius: 10,
-								borderWidth: 1.2,
+								borderWidth: 1.4,
 								borderColor: UIColor.lightGray.cgColor,
-								bgColor: UIColor.init(red: 0.149, green: 0.67, blue: 0.90, alpha: 0.8) as! CGColor)
+								bgColor: (UIColor.init(red: 208/255, green: 250/255, blue: 164/255, alpha: 1).cgColor))
+		
 		styles.styleUITextField(textField: add_english,
 								font: UIFont(name: "times", size: 20)!,
 								radius: 10,
-								borderWidth: 1.2,
+								borderWidth: 1.4,
 								borderColor: UIColor.lightGray.cgColor,
-								bgColor: UIColor.init(red: 0.149, green: 0.67, blue: 0.90, alpha: 0.8) as! CGColor)
+								bgColor: (UIColor.init(red: 208/255, green: 250/255, blue: 164/255, alpha: 1).cgColor))
+		
 		styles.styleUITableView(tableView: table_view,
 								radius: 10,
-								borderWidth: 1.2,
+								borderWidth: 1.4,
 								borderColor: UIColor.lightGray.cgColor,
-								bgColor: UIColor.init(red: 0.66, green: 0.71, blue: 0.72, alpha: 0.8) as! CGColor))
+								bgColor: (UIColor.init(red: 208/255, green: 250/255, blue: 164/255, alpha: 1).cgColor))
 		
 	//------------
 	
@@ -70,16 +77,8 @@ class ViewController2: UIViewController,
 	//---------------
 		
 	//-- Buttons --
-//		if viewcontroller.seg_control_1.selectedSegmentIndex == 0			/* french */
-//		{
-//			//add.setTitle("Ajouter", for: .normal)
-//			go_dictionary.setTitle("Retour", for: .normal)
-//		}
-//		else																/* anglais */
-//		{
-//			//add.setTitle("Add", for: .normal)
-//			go_dictionary.setTitle("Back", for: .normal)
-		//}
+//		add.setTitle("Ajouter/Add", for: .normal)
+//		go_dictionary.setTitle("Retour/Back", for: .normal)
 	//-------------
 		
 	//-- Table View --
@@ -101,8 +100,10 @@ class ViewController2: UIViewController,
 		
 		save.save(theData: arrayFrenchWords as AnyObject, fileName: "french")
 		save.save(theData: arrayEnglishWords as AnyObject, fileName: "english")
-		
 	}
+	
+	
+	
 	//-------------
 	
 	
