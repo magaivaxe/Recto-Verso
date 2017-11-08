@@ -84,6 +84,17 @@ class Styles
 		tv.layer.borderColor = bc
 		tv.layer.backgroundColor = bg
 	}
+    
+    func styleUIScrollView(scrollView sv: UIScrollView,
+                           radius r: CGFloat,
+                           borderWidth bw: CGFloat,
+                           borderColor bc: CGColor)
+    {
+        sv.clipsToBounds = true
+        sv.layer.cornerRadius = r
+        sv.layer.borderWidth = bw
+        sv.layer.borderColor = bc
+    }
 	
 }
 

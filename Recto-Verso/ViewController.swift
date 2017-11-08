@@ -14,7 +14,8 @@ class ViewController: UIViewController,
 	@IBOutlet weak var seg_control_1: UISegmentedControl!
 	@IBOutlet weak var pick_letter: UIPickerView!
 	@IBOutlet weak var definitions_1: UITextView!
-//----------------------------------
+    @IBOutlet weak var scroll_view: UIScrollView!
+    //----------------------------------
 	
 //----------- Variables ------------
 	var arrayOfLetters = ["a", "b", "c", "d", "e", "f", "g",		/* Letters to pick */
@@ -42,7 +43,7 @@ class ViewController: UIViewController,
 									   borderWidth: 1.4,
 									   tintColor: UIColor.init(red: 52/255, green: 153/255, blue: 245/255, alpha: 1),
 									   borderColor: UIColor.lightGray.cgColor,
-									   bgColor: UIColor.init(red: 208/255, green: 250/255, blue: 164/255, alpha: 1).cgColor)
+									   bgColor: UIColor.init(red: 208/255, green: 250/255, blue: 164/255, alpha: 0.3).cgColor)
 		
 		styles.styleUITextViews(textView: definitions_1,
 								radius: 10,
@@ -51,7 +52,12 @@ class ViewController: UIViewController,
 								textAlignment: NSTextAlignment.left,
 								borderWidth: 1.4,
 								borderColor: UIColor.lightGray.cgColor,
-								bgColor: UIColor.init(red: 0.66, green: 0.71, blue: 0.72, alpha: 0.8).cgColor)
+								bgColor: UIColor.init(red: 208/255, green: 250/255, blue: 164/255, alpha: 0.3).cgColor)
+        
+        styles.styleUIScrollView(scrollView: scroll_view,
+                                 radius: 10,
+                                 borderWidth: 1.4,
+                                 borderColor: UIColor.lightGray.cgColor)
 		
 	//------------
 		

@@ -110,6 +110,7 @@
                         <outlet property="go_insert_words" destination="mm6-JY-C6J" id="MCN-5W-uMS"/>
                         <outlet property="logo" destination="Z8L-Qk-dXW" id="byT-H2-Ijy"/>
                         <outlet property="pick_letter" destination="Cga-Ty-qZh" id="nG4-Rc-FFR"/>
+                        <outlet property="scroll_view" destination="vAT-MQ-TCq" id="MMI-KM-mq8"/>
                         <outlet property="seg_control_1" destination="zw6-e7-h2r" id="3OX-CY-wx2"/>
                     </connections>
                 </viewController>
@@ -138,7 +139,7 @@
                                     <segue destination="BYZ-38-t0r" kind="presentation" id="zSg-6D-IdA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6Z-eI-L3o">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6Z-eI-L3o" userLabel="add words">
                                 <rect key="frame" x="107" y="122" width="252" height="36"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -151,15 +152,27 @@
                                     <action selector="add_words:" destination="aJK-8H-2lc" eventType="touchUpInside" id="8uT-u1-k4N"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Pi-nS-qYc">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Pi-nS-qYc" userLabel="buttons view">
                                 <rect key="frame" x="16" y="105" width="70" height="70"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUX-Zf-NNW" userLabel="english">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n2A-7H-yrN" userLabel="french button">
+                                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="change_language:" destination="aJK-8H-2lc" eventType="touchUpInside" id="umf-Da-Zv0"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUX-Zf-NNW" userLabel="english button">
                                         <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                         <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n2A-7H-yrN" userLabel="french">
-                                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="change_language:" destination="aJK-8H-2lc" eventType="touchUpInside" id="Xxd-kD-80g"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -211,10 +224,12 @@
                             <constraint firstAttribute="bottom" secondItem="lBQ-1G-KuA" secondAttribute="top" multiplier="33.35" symbolic="YES" id="3Bn-8e-TN5"/>
                             <constraint firstItem="2Pi-nS-qYc" firstAttribute="height" secondItem="42e-IV-gV8" secondAttribute="height" multiplier="0.1049" id="ASk-nx-wMe"/>
                             <constraint firstAttribute="bottom" secondItem="uwR-Qp-bGN" secondAttribute="top" multiplier="3.586" id="Efj-dh-JIj"/>
-                            <constraint firstItem="lBQ-1G-KuA" firstAttribute="leading" secondItem="2Pi-nS-qYc" secondAttribute="leading" id="Mhp-7m-hbg"/>
+                            <constraint firstAttribute="trailing" secondItem="lBQ-1G-KuA" secondAttribute="trailing" constant="289" id="FxG-na-b8w"/>
+                            <constraint firstItem="lBQ-1G-KuA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2Pi-nS-qYc" secondAttribute="leading" id="Mhp-7m-hbg"/>
                             <constraint firstItem="uwR-Qp-bGN" firstAttribute="centerX" secondItem="42e-IV-gV8" secondAttribute="centerX" id="OKY-59-tOI"/>
                             <constraint firstItem="c6Z-eI-L3o" firstAttribute="centerY" secondItem="2Pi-nS-qYc" secondAttribute="centerY" id="SPr-6J-u9g"/>
                             <constraint firstItem="lBQ-1G-KuA" firstAttribute="width" secondItem="2Pi-nS-qYc" secondAttribute="width" id="WfT-Ke-x9x"/>
+                            <constraint firstItem="c6Z-eI-L3o" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="42e-IV-gV8" secondAttribute="leading" constant="20" symbolic="YES" id="e3c-7k-5Eu"/>
                             <constraint firstItem="cyC-QV-pek" firstAttribute="trailing" secondItem="c6Z-eI-L3o" secondAttribute="trailing" id="fFb-B7-pe4"/>
                             <constraint firstItem="c6Z-eI-L3o" firstAttribute="trailing" secondItem="uwR-Qp-bGN" secondAttribute="trailing" id="gs5-8k-qQU"/>
                             <constraint firstItem="XaT-kd-MqD" firstAttribute="width" secondItem="cyC-QV-pek" secondAttribute="width" id="h1c-hW-GX7"/>
@@ -230,6 +245,9 @@
                         <outlet property="add" destination="c6Z-eI-L3o" id="MQE-Jd-P5S"/>
                         <outlet property="add_english" destination="cyC-QV-pek" id="aIC-U7-X2F"/>
                         <outlet property="add_french" destination="XaT-kd-MqD" id="mBJ-63-PVg"/>
+                        <outlet property="buttons_view" destination="2Pi-nS-qYc" id="GyH-Gu-aac"/>
+                        <outlet property="english_button" destination="BUX-Zf-NNW" id="2af-v8-pD9"/>
+                        <outlet property="french_button" destination="n2A-7H-yrN" id="tRq-YD-QSF"/>
                         <outlet property="go_dictionary" destination="lBQ-1G-KuA" id="9c1-F7-Mk1"/>
                         <outlet property="table_view" destination="uwR-Qp-bGN" id="28h-ew-Est"/>
                     </connections>

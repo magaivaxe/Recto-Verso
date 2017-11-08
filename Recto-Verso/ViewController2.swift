@@ -1,9 +1,9 @@
 
 
-//----------- Librarys -----------
+//----------- Librarys ------------
 import UIKit
 import Foundation
-//--------------------------------
+//---------------------------------
 
 class ViewController2: UIViewController,
 					   UITableViewDataSource, UITableViewDelegate
@@ -15,6 +15,9 @@ class ViewController2: UIViewController,
 	@IBOutlet weak var add: UIButton!
 	@IBOutlet weak var go_dictionary: UIButton!
 	@IBOutlet weak var table_view: UITableView!
+    @IBOutlet weak var english_button: UIButton!
+    @IBOutlet weak var french_button: UIButton!
+    @IBOutlet weak var buttons_view: UIView!
 //----------------------------------
 
 //----------- Variables ------------
@@ -24,13 +27,16 @@ class ViewController2: UIViewController,
 	var file = "file"
 //----------------------------------
 
+//== ViewDidLoad =====================================================================
     override func viewDidLoad()
 	{
-		
-		
 		super.viewDidLoad()
+        
+    //--------- Saves Menager ---------
+        loadSaves()
+    //---------------------------------
 		
-	//-- Styles --
+	//------------ Styles -------------
 		let styles = Styles()
 		
 		styles.styleUIButtons(button: go_dictionary,
@@ -40,6 +46,22 @@ class ViewController2: UIViewController,
 							  borderWidth: 1.4,
 							  borderColor: UIColor.lightGray.cgColor,
 							  bgColor: (UIColor.init(red: 52/255, green: 153/255, blue: 245/255, alpha: 1).cgColor))
+        
+        styles.styleUIButtons(button: french_button,
+                              font: UIFont(name: "times", size: 15)!,
+                              title: "Français",
+                              radius: 10,
+                              borderWidth: 1.4,
+                              borderColor: UIColor.lightGray.cgColor,
+                              bgColor: (UIColor.init(red: 52/255, green: 153/255, blue: 245/255, alpha: 1).cgColor))
+        
+        styles.styleUIButtons(button: english_button,
+                              font: UIFont(name: "times", size: 15)!,
+                              title: "English",
+                              radius: 10,
+                              borderWidth: 1.4,
+                              borderColor: UIColor.lightGray.cgColor,
+                              bgColor: (UIColor.init(red: 52/255, green: 153/255, blue: 245/255, alpha: 1).cgColor))
 		
 		styles.styleUIButtons(button: add,
 							  font: UIFont(name: "times", size: 20)!,
@@ -69,28 +91,29 @@ class ViewController2: UIViewController,
 								borderColor: UIColor.lightGray.cgColor,
 								bgColor: (UIColor.init(red: 208/255, green: 250/255, blue: 164/255, alpha: 1).cgColor))
 		
-	//------------
+	//------------------------------
 	
-	//-- TextViews --
+	//---------- TextViews ---------
 		add_french.placeholder = "Inserez un mot..."
 		add_english.placeholder = "Insert a word..."
-	//---------------
+	//------------------------------
 		
-	//-- Buttons --
-//		add.setTitle("Ajouter/Add", for: .normal)
-//		go_dictionary.setTitle("Retour/Back", for: .normal)
-	//-------------
+	//----------- Buttons ----------
+        french_button.isHidden = true
+        add.setTitle("Ajouter", for: .normal)
+        go_dictionary.setTitle("Retour", for: .normal)
+	//------------------------------
 		
-	//-- Table View --
+	//--------- Table View ---------
 		
 		
-	//----------------
-		
-	//-- Saves Menager --
-		loadSaves()
-	//-------------------
+	//------------------------------
     }
-	//-- Buttons --
+//====================================================================================
+    
+	//----------- Buttons ----------
+    
+    //-- Save words --
 	@IBAction func add_words(_ sender: UIButton)
 	{
 		let save = SaveLoadMenager()			/* Load the class locally */
@@ -101,10 +124,30 @@ class ViewController2: UIViewController,
 		save.save(theData: arrayFrenchWords as AnyObject, fileName: "french")
 		save.save(theData: arrayEnglishWords as AnyObject, fileName: "english")
 	}
-	
-	
-	
-	//-------------
+    //----------------
+    
+    @IBAction func change_language(_ sender: UIButton)
+    {
+        switch sender.tag
+        {
+        case 0:                                             /* French */
+            french_button.isHidden = true
+            english_button.isHidden = false
+            add.setTitle("Ajouter", for: .normal)
+            go_dictionary.setTitle("Retour", for: .normal)
+        case 1:                                             /* English */
+            french_button.isHidden = false
+            english_button.isHidden = true
+            add.setTitle("Add", for: .normal)
+            go_dictionary.setTitle("Back", for: .normal)
+        default:
+            break
+        }
+    }
+    
+    
+    
+	//------------------------------
 	
 	
 	//-- Saves Menager --
