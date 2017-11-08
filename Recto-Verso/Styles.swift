@@ -96,6 +96,17 @@ class Styles
         sv.layer.borderColor = bc
     }
 	
+	func styleUIImageView(imageView iv: UIImageView,
+	                      radius r: CGFloat,
+	                      borderWidth bw: CGFloat,
+	                      borderColor bc: CGColor)
+	{
+		iv.clipsToBounds = true
+		iv.layer.cornerRadius = r
+		iv.layer.borderWidth = bw
+		iv.layer.borderColor = bc
+	}
+	
 }
 
 

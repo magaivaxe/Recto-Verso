@@ -30,6 +30,11 @@ class ViewController: UIViewController,
 	//-- Styles --
 		let styles = Styles()
 		
+		styles.styleUIImageView(imageView: logo,
+		                        radius: 10,
+		                        borderWidth: 0,
+		                        borderColor: UIColor.lightGray.cgColor)
+		
 		styles.styleUIButtons(button: go_insert_words,
 							  font: UIFont(name: "Times", size: 15)!,
 							  title: "+ Mots",
