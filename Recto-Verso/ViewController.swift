@@ -2,7 +2,6 @@
 
 //----------- Librarys -----------
 import UIKit
-import Foundation
 //--------------------------------
 
 class ViewController: UIViewController,
@@ -58,7 +57,11 @@ class ViewController: UIViewController,
 	{
 		super.viewDidLoad()
 		
+	//-- functions --
 		fillArrays()
+	//---------------
+	
+	
 		
 	//-- Styles --
 		let styles = Styles()

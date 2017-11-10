@@ -2,7 +2,6 @@
 
 //----------- Librarys ------------
 import UIKit
-import Foundation
 //---------------------------------
 
 class ViewController2: UIViewController,
@@ -24,7 +23,6 @@ class ViewController2: UIViewController,
 	var dictRectoVerso : [String:String]!
 	var arrayFrenchWords : [String]!
 	var arrayEnglishWords : [String]!
-	var file = "file"
 //----------------------------------
 
 //== ViewDidLoad =====================================================================
@@ -123,6 +121,8 @@ class ViewController2: UIViewController,
 		
 		save.save(theData: arrayFrenchWords as AnyObject, fileName: "french")
 		save.save(theData: arrayEnglishWords as AnyObject, fileName: "english")
+		
+		table_view.reloadData()
 	}
     //----------------
     
@@ -144,18 +144,15 @@ class ViewController2: UIViewController,
             break
         }
     }
-    
-    
-    
-	//------------------------------
 	
+	//------------------------------
 	
 	//-- Saves Menager --
 	func loadSaves()
 	{
 		let load = SaveLoadMenager()			/* Load the class locally */
 		
-		if load.checkExistingSaves(fileName: "file")
+		if load.checkExistingSaves(fileName: "french")
 		{
 			/* Load the existing arrays */
 			arrayFrenchWords = load.loadData(fileName: "french") as! [String]
@@ -163,10 +160,14 @@ class ViewController2: UIViewController,
 		}
 		else
 		{
-			/* Create the file and the arrays */
-			load.save(theData: file as AnyObject, fileName: "File")
+			/* Create the arrays */
 			arrayFrenchWords = [String]()
 			arrayEnglishWords = [String]()
+			
+			/* Create the files*/
+			load.save(theData: arrayFrenchWords as AnyObject, fileName: "french")
+			load.save(theData: arrayEnglishWords as AnyObject, fileName: "english")
+			
 		}
 	}
 	//-------------------
@@ -186,24 +187,54 @@ class ViewController2: UIViewController,
 	func tableView(_ tableView: UITableView,
 	               cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
-		let viewcontroler = ViewController()
 		
-		let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: nil)
+		let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default,
+		                                            reuseIdentifier: nil)
+		dictRectoVerso = Dictionary(uniqueKeysWithValues: zip(arrayFrenchWords, arrayEnglishWords))
 		
-		if viewcontroler.seg_control_1.selectedSegmentIndex == 0	/* french*/
+		let french = [String](dictRectoVerso.keys)[indexPath.row]
+		let english = [String](dictRectoVerso.values)[indexPath.row]
+		
+		if french_button.isHidden == false	/* french*/
 		{
-			dictRectoVerso = Dictionary(uniqueKeysWithValues: zip(arrayFrenchWords, arrayEnglishWords))
-			
-			cell.textLabel?.text = dictRectoVerso.description
+			cell.textLabel?.text = "\(french) => \(english)"
 		}
 		else
 		{
-			dictRectoVerso = Dictionary(uniqueKeysWithValues: zip(arrayEnglishWords, arrayFrenchWords))
-			
-			cell.textLabel?.text = dictRectoVerso.description
+			cell.textLabel?.text = "\(english) => \(french)"
 		}
 		return cell
 	}
+	
+	func tableView(_ tableView: UITableView,
+	               canEditRowAt indexPath: IndexPath) -> Bool
+	{
+		return true
+	}
+	
+	func tableView(_ tableView: UITableView,
+	               commit editingStyle: UITableViewCellEditingStyle,
+	               forRowAt indexPath: IndexPath)
+	{
+		let save = SaveLoadMenager()
+		
+		if editingStyle == UITableViewCellEditingStyle.delete
+		{
+			arrayFrenchWords.remove(at: indexPath.row)
+			arrayEnglishWords.remove(at: indexPath.row)
+			
+			save.save(theData: arrayFrenchWords as AnyObject, fileName: "french")
+			save.save(theData: arrayEnglishWords as AnyObject, fileName: "english")
+			
+			table_view.reloadData()
+		}
+	}
+	//-----------------------
+	
+	//- Cell edition -
+	
+	//----------------
+	
 //--------------------------------
 
 
