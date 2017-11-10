@@ -35,13 +35,6 @@
                                     <action selector="seg_french_english:" destination="BYZ-38-t0r" eventType="valueChanged" id="Ytk-dG-fHq"/>
                                 </connections>
                             </segmentedControl>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FnG-4k-CxD" userLabel="traduction">
-                                <rect key="frame" x="17" y="531" width="264" height="116"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vAT-MQ-TCq" userLabel="scroll_of_buttons">
                                 <rect key="frame" x="289" y="129" width="70" height="518"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -243,8 +236,24 @@
                                     </view>
                                 </subviews>
                             </scrollView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="p0B-vi-Pa8" userLabel="show_words">
+                                <rect key="frame" x="17" y="173" width="264" height="350"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="kEo-bL-TK6"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="IoI-ZV-Q7m"/>
+                                </connections>
+                            </tableView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FnG-4k-CxD" userLabel="traduction_words">
+                                <rect key="frame" x="17" y="531" width="264" height="116"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mm6-JY-C6J" userLabel="insert_words">
-                                <rect key="frame" x="287" y="20" width="70" height="41"/>
+                                <rect key="frame" x="289" y="36" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.32575226610000002" green="0.78030401380000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="+ mot">
@@ -254,28 +263,49 @@
                                     <segue destination="aJK-8H-2lc" kind="presentation" identifier="seg_view2" id="wQx-Hm-sqy"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="p0B-vi-Pa8">
-                                <rect key="frame" x="17" y="173" width="264" height="350"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="a" destination="ICV-IU-nRU" id="4do-93-Nzv"/>
+                        <outlet property="b" destination="QHC-kX-9fY" id="ggE-7J-LCo"/>
+                        <outlet property="c" destination="ewk-g9-IMa" id="1Dl-st-Cwp"/>
+                        <outlet property="d" destination="fUL-ea-lrT" id="Ee0-Dj-IzO"/>
+                        <outlet property="e" destination="0Uq-ak-DoH" id="ORl-Jt-7b4"/>
+                        <outlet property="f" destination="3dN-AI-xLn" id="zDy-SF-0wg"/>
+                        <outlet property="g" destination="nT0-LP-rmc" id="2Cz-O2-UWG"/>
                         <outlet property="go_insert_words" destination="mm6-JY-C6J" id="MCN-5W-uMS"/>
+                        <outlet property="h" destination="mF7-1I-Wzw" id="CEj-k7-LGO"/>
+                        <outlet property="i" destination="wxf-OZ-MFf" id="eBC-E7-jdB"/>
+                        <outlet property="j" destination="Vnk-2o-VVe" id="Aia-Oy-Ai3"/>
+                        <outlet property="k" destination="Tmg-qq-MnN" id="pv9-8G-b13"/>
+                        <outlet property="l" destination="nnw-sP-uTw" id="UrE-9l-0Og"/>
                         <outlet property="logo" destination="Z8L-Qk-dXW" id="byT-H2-Ijy"/>
+                        <outlet property="m" destination="W4x-gc-dI8" id="k15-sM-Hwd"/>
+                        <outlet property="n" destination="yB7-Ho-0Pd" id="dUM-Ew-Jxr"/>
+                        <outlet property="o" destination="iJj-B9-MIV" id="74Q-h2-eqy"/>
+                        <outlet property="p" destination="lJI-5A-Xna" id="IJd-Ic-rfh"/>
+                        <outlet property="q" destination="inr-XB-sKb" id="syO-Ni-oTP"/>
+                        <outlet property="r" destination="e3Q-ud-9uZ" id="oxy-XN-dTI"/>
+                        <outlet property="s" destination="vcr-hp-ZR7" id="SQS-jj-UtJ"/>
                         <outlet property="scroll_of_buttons" destination="vAT-MQ-TCq" id="Um5-Iy-68H"/>
                         <outlet property="scroll_view" destination="vAT-MQ-TCq" id="MMI-KM-mq8"/>
                         <outlet property="seg_control_1" destination="zw6-e7-h2r" id="3OX-CY-wx2"/>
+                        <outlet property="show_words" destination="p0B-vi-Pa8" id="e5T-Lh-7JU"/>
+                        <outlet property="t" destination="Fgn-cd-rIU" id="08x-Ka-d0O"/>
                         <outlet property="traduction" destination="FnG-4k-CxD" id="yPg-r9-0xn"/>
+                        <outlet property="u" destination="Wog-ue-D9z" id="IcC-wy-ZOL"/>
+                        <outlet property="v" destination="p9P-g4-Efz" id="Vrf-Q6-fhf"/>
                         <outlet property="view_of_buttons" destination="o1Z-kb-Qc2" id="bZQ-M0-eov"/>
+                        <outlet property="w" destination="Q0p-gK-8Df" id="sJG-cy-zgv"/>
+                        <outlet property="x" destination="1Nq-dM-rWI" id="phe-LK-d5X"/>
+                        <outlet property="y" destination="Rhu-0C-WJC" id="FHQ-KJ-0oh"/>
+                        <outlet property="z" destination="P3q-CA-sNc" id="ZGF-FE-dWz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2159.1999999999998" y="-832.53373313343332"/>
+            <point key="canvasLocation" x="-2154" y="-833"/>
         </scene>
         <!--View2-->
         <scene sceneID="oT5-gH-P8i">

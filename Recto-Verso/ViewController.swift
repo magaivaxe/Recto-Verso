@@ -5,8 +5,12 @@ import UIKit
 import Foundation
 //--------------------------------
 
-class ViewController: UIViewController
+class ViewController: UIViewController,
+					  UITableViewDelegate,
+					  UITableViewDataSource
 {
+	
+	
 //------------ Outlets -------------
 	@IBOutlet weak var logo: UIImageView!
 	@IBOutlet weak var go_insert_words: UIButton!
@@ -15,6 +19,7 @@ class ViewController: UIViewController
 	@IBOutlet weak var traduction: UITextView!
 	@IBOutlet weak var scroll_of_buttons: UIScrollView!
 	@IBOutlet weak var view_of_buttons: UIView!
+	@IBOutlet weak var show_words: UITableView!
 	
 	@IBOutlet weak var a: UIButton!
 	@IBOutlet weak var b: UIButton!
@@ -46,14 +51,14 @@ class ViewController: UIViewController
 	//----------------------------------
 	
 //----------- Variables ------------
-	var arrayOfLetters = ["a", "b", "c", "d", "e", "f", "g",		/* Letters to pick */
-						  "h", "i", "j", "k", "l", "m", "n",
-						  "o", "q","r", "s", "t", "u", "v",
-						  "w", "x", "y", "z"]
+	var arrayOfLetters: [String]!
+	var arrayOfButtons: [UIButton]!
 //----------------------------------
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
+		
+		fillArrays()
 		
 	//-- Styles --
 		let styles = Styles()
@@ -78,7 +83,7 @@ class ViewController: UIViewController
 									   borderColor: UIColor.lightGray.cgColor,
 									   bgColor: UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 1).cgColor)
 		
-		styles.styleUITextViews(textView: definitions_1,
+		styles.styleUITextViews(textView: traduction,
 								radius: 10,
 								font: UIFont(name: "Times", size: 20)!,
 								textColor: UIColor.black,
@@ -97,6 +102,17 @@ class ViewController: UIViewController
 	//-- Segmented Control --
 		
 	//-----------------------
+	}
+	//======
+	func fillArrays()
+	{
+		arrayOfLetters = ["A","B","C","D","E","F","G",			/* Letters to pick */
+					  	 "H","I","J","K","L","M","N",
+						 "O","Q","R","S","T","U","V",
+						 "W","X","Y","Z"]
+		
+		arrayOfButtons = [a,b,c,d,e,f,g,h,i,j,k,l,m,
+		                  n,o,p,q,r,s,t,u,v,w,y,x,z]
 	}
 	
 	
@@ -120,7 +136,24 @@ class ViewController: UIViewController
 	
 	//===================================================================================
 
-
+	//=================================== TABLE VIEW ====================================
+	func tableView(_ tableView: UITableView,
+	               numberOfRowsInSection section: Int) -> Int
+	{
+		<#code#>
+	}
+	
+	func tableView(_ tableView: UITableView,
+	               cellForRowAt indexPath: IndexPath) -> UITableViewCell
+	{
+		<#code#>
+	}
+	
+	func tableView(_ tableView: UITableView,
+	               didDeselectRowAt indexPath: IndexPath)
+	{
+		<#code#>
+	}
 		
 }
 	
@@ -159,7 +192,7 @@ class ViewController: UIViewController
 	
 	
 
-}
+
 
 
 
