@@ -71,37 +71,52 @@ class ViewController: UIViewController,
 		
 		styles.styleUIImageView(imageView: logo,
 		                        radius: 10,
-		                        borderWidth: 0.5,
-		                        borderColor: UIColor.lightGray.cgColor)
+		                        borderWidth: 0,
+		                        borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor)
 		
 		styles.styleUIButtons(button: go_insert_words,
-							  font: UIFont(name: "Times", size: 15)!,
+							  font: UIFont(name: "Menlo", size: 15)!,
 							  title: "+ Mots",
 							  radius: 10,
 							  borderWidth: 1.4,
-							  borderColor: UIColor.lightGray.cgColor,
-							  bgColor: UIColor.init(red: 7/255, green: 27/255, blue: 204/255, alpha: 1).cgColor)
+							  borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
+							  bgColor: UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor)
+		
+		styles.styleArrayOfUIButtons(arrayOfButtons: arrayOfButtons,
+		                             font: UIFont(name: "Menlo", size: 15)!,
+		                             fontColor: UIColor.white,
+		                             radius: 10,
+		                             borderWidth: 1.4,
+		                             borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
+		                             bgColor: UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor)
 		
 		styles.styleUISegmentedControl(segmentedControl: seg_control_1,
 									   radius: 10,
 									   borderWidth: 1.4,
-									   tintColor: UIColor.init(red: 7/255, green: 27/255, blue: 204/255, alpha: 1),
-									   borderColor: UIColor.lightGray.cgColor,
-									   bgColor: UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 1).cgColor)
+									   tintColor: UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1),
+									   borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
+									   bgColor: UIColor.init(red: 238/255, green: 237/255, blue: 243/255, alpha: 1).cgColor)
 		
 		styles.styleUITextViews(textView: traduction,
 								radius: 10,
-								font: UIFont(name: "Times", size: 20)!,
-								textColor: UIColor.black,
+								font: UIFont(name: "Menlo", size: 20)!,
+								textColor: UIColor.white,
 								textAlignment: NSTextAlignment.left,
 								borderWidth: 1.4,
-								borderColor: UIColor.lightGray.cgColor,
-								bgColor: UIColor.init(red: 208/255, green: 250/255, blue: 164/255, alpha: 0.3).cgColor)
+								borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
+								bgColor: UIColor.init(red: 238/255, green: 237/255, blue: 243/255, alpha: 1).cgColor)
         
         styles.styleUIScrollView(scrollView: scroll_view,
                                  radius: 10,
                                  borderWidth: 1.4,
-                                 borderColor: UIColor.lightGray.cgColor)
+                                 borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
+                                 bgColor: UIColor.init(red: 238/255, green: 237/255, blue: 243/255, alpha: 1).cgColor)
+		
+		styles.styleUITableView(tableView: show_words,
+		                        radius: 10,
+		                        borderWidth: 1.4,
+		                        borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
+							 	bgColor: UIColor.init(red: 238/255, green: 237/255, blue: 243/255, alpha: 1).cgColor)
 		
 	//--------------------------------------------------
 	
@@ -153,17 +168,25 @@ class ViewController: UIViewController,
 	
 	@IBAction func seg_french_english(_ sender: UISegmentedControl)
 	{
-		if seg_control_1.selectedSegmentIndex == 0  /* french */
+		let buttonColor = Styles()
+		
+		if seg_control_1.selectedSegmentIndex == 0  /* french - blue */
 		{
 			go_insert_words.setTitle("+ Mots", for: .normal)
-			go_insert_words.layer.backgroundColor = UIColor.init(red: 7/255, green: 27/255, blue: 204/255, alpha: 1).cgColor
-			seg_control_1.tintColor = UIColor.init(red: 7/255, green: 27/255, blue: 204/255, alpha: 1)
+			go_insert_words.layer.backgroundColor = UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor
+			traduction.layer.backgroundColor = UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor
+			buttonColor.styleColorsOfButtons(arrayOfButtons: arrayOfButtons,
+			                                 colors: UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor)
+			seg_control_1.tintColor = UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1)
 		}
-		else										/* english */
+		else										/* english - red */
 		{
 			go_insert_words.setTitle("+ Words", for: .normal)
-			go_insert_words.layer.backgroundColor = UIColor.init(red: 204/255, green: 8/255, blue: 20/255, alpha: 1).cgColor
-			seg_control_1.tintColor = UIColor.init(red: 204/255, green: 8/255, blue: 20/255, alpha: 1)
+			go_insert_words.layer.backgroundColor = UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1).cgColor
+			traduction.layer.backgroundColor = UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1).cgColor
+			buttonColor.styleColorsOfButtons(arrayOfButtons: arrayOfButtons,
+			                                 colors: UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1).cgColor)
+			seg_control_1.tintColor = UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1)
 		}
 	}
 	

@@ -9,6 +9,7 @@ import UIKit
 
 class Styles
 {
+	//------------- Buttons -----------------
 	func styleUIButtons(button b: UIButton,
 						font f: UIFont,
 						title t: String,
@@ -29,6 +30,7 @@ class Styles
 	
 	func styleArrayOfUIButtons(arrayOfButtons ab: [UIButton],
 	                           font f: UIFont,
+	                           fontColor fc: UIColor,
 	                           radius r: CGFloat,
 	                           borderWidth bw: CGFloat,
 	                           borderColor bc: CGColor,
@@ -42,9 +44,28 @@ class Styles
 			b.layer.borderColor = bc
 			b.layer.backgroundColor = bg
 			b.titleLabel?.font = f
+			b.titleLabel?.textColor = fc
 		}
 	}
 	
+	func styleColorsOfButtons(arrayOfButtons ab: [UIButton],
+	                          colors c: CGColor?)
+	{
+		for b in ab
+		{
+			b.layer.backgroundColor = c
+		}
+	}
+	
+	func styleAlphaOfButtons(arrayOfButtons ab: [UIButton],
+	                         alpha a: CGFloat)
+	{
+		for b in ab
+		{
+			b.alpha = a
+		}
+	}
+	//---------------------------------------
 	func styleUISegmentedControl(segmentedControl sc: UISegmentedControl,
 	                             radius r: CGFloat,
 	                             borderWidth bw: CGFloat,
@@ -110,12 +131,14 @@ class Styles
     func styleUIScrollView(scrollView sv: UIScrollView,
                            radius r: CGFloat,
                            borderWidth bw: CGFloat,
-                           borderColor bc: CGColor)
+                           borderColor bc: CGColor,
+                           bgColor bg: CGColor?)
     {
         sv.clipsToBounds = true
         sv.layer.cornerRadius = r
         sv.layer.borderWidth = bw
         sv.layer.borderColor = bc
+		sv.layer.backgroundColor = bg
     }
 	
 	func styleUIImageView(imageView iv: UIImageView,
