@@ -27,6 +27,24 @@ class Styles
 		b.titleLabel?.adjustsFontSizeToFitWidth = true
 	}
 	
+	func styleArrayOfUIButtons(arrayOfButtons ab: [UIButton],
+	                           font f: UIFont,
+	                           radius r: CGFloat,
+	                           borderWidth bw: CGFloat,
+	                           borderColor bc: CGColor,
+	                           bgColor bg: CGColor?)
+	{
+		for b in ab
+		{
+			b.clipsToBounds = true
+			b.layer.cornerRadius = r
+			b.layer.borderWidth = bw
+			b.layer.borderColor = bc
+			b.layer.backgroundColor = bg
+			b.titleLabel?.font = f
+		}
+	}
+	
 	func styleUISegmentedControl(segmentedControl sc: UISegmentedControl,
 	                             radius r: CGFloat,
 	                             borderWidth bw: CGFloat,
