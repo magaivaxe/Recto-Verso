@@ -1,4 +1,8 @@
+/*
 
+Class to apply style to any
+
+*/
 import Foundation
 import UIKit
 

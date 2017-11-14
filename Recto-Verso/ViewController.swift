@@ -52,18 +52,21 @@ class ViewController: UIViewController,
 //----------- Variables ------------
 	var arrayOfLetters: [String]!
 	var arrayOfButtons: [UIButton]!
+	var arrayOfFrenchWordsV1: [String]!
+	var arrayOfEnglishWordsV1: [String]!
 //----------------------------------
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
 		
-	//-- functions --
+	//--- functions ---
 		fillArrays()
-	//---------------
+	//-----------------
+	//- Loader Saves --
+		loader()
+	//-----------------
 	
-	
-		
-	//-- Styles --
+	//-------------------- Styles ----------------------
 		let styles = Styles()
 		
 		styles.styleUIImageView(imageView: logo,
@@ -100,13 +103,30 @@ class ViewController: UIViewController,
                                  borderWidth: 1.4,
                                  borderColor: UIColor.lightGray.cgColor)
 		
-	//------------
+	//--------------------------------------------------
+	
 		
-	//-- Segmented Control --
+	//---------- Set text to buttons ---------
+		let setText = ToSetAny()
 		
-	//-----------------------
+		setText.setTextToButtons(arrayOfButtons: arrayOfButtons,
+		                         arrayOfText: arrayOfLetters,
+		                         numberOfButtons: 26)
+		
+	//-----------------------------------------
 	}
-	//======
+	//=================== Alphabetical Buttons ========================
+	
+	@IBAction func alphabetical_buttons(_ sender: UIButton)
+	{
+		
+		
+	}
+	
+	
+	//=================================================================
+	
+	//=================== Function to fill arrays =====================
 	func fillArrays()
 	{
 		arrayOfLetters = ["A","B","C","D","E","F","G",			/* Letters to pick */
@@ -116,8 +136,19 @@ class ViewController: UIViewController,
 		
 		arrayOfButtons = [a,b,c,d,e,f,g,h,i,j,k,l,m,
 		                  n,o,p,q,r,s,t,u,v,w,y,x,z]
+		
 	}
+	//=================================================================
 	
+	//=================== Loader Data ============================
+	func loader()
+	{
+		let load = SaveLoadMenager()
+		
+		arrayOfFrenchWordsV1 = load.loadData(fileName: "french") as! [String]
+		arrayOfEnglishWordsV1 = load.loadData(fileName: "english") as! [String]
+	}
+	//============================================================
 	
 	//======= Segmentation Control ======================================================
 	
@@ -143,25 +174,31 @@ class ViewController: UIViewController,
 	func tableView(_ tableView: UITableView,
 	               numberOfRowsInSection section: Int) -> Int
 	{
-		<#code#>
+		return arrayOfFrenchWordsV1.count
 	}
 	
 	func tableView(_ tableView: UITableView,
 	               cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
-		<#code#>
+		let cell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default,
+		                                           reuseIdentifier: nil)
+		
+		/* Insert here the codes cnditions to write on table_view*/
+		
+		
+		return cell
 	}
 	
 	func tableView(_ tableView: UITableView,
 	               didDeselectRowAt indexPath: IndexPath)
 	{
-		<#code#>
-	}
 		
+	}
+	//===================================================================================
 }
 	
 	
-	//===================================================================================
+
 	
 	
 	
