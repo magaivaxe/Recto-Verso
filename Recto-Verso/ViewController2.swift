@@ -43,7 +43,7 @@ class ViewController2: UIViewController,
 							  radius: 10,
 							  borderWidth: 1.4,
 							  borderColor: UIColor.lightGray.cgColor,
-							  bgColor: UIColor.init(red: 7/255, green: 27/255, blue: 204/255, alpha: 1).cgColor)
+							  bgColor: UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor)
         
         styles.styleUIButtons(button: french_button,
                               font: UIFont(name: "Menlo", size: 15)!,
@@ -51,7 +51,7 @@ class ViewController2: UIViewController,
                               radius: 10,
                               borderWidth: 1.4,
                               borderColor: UIColor.lightGray.cgColor,
-                              bgColor: UIColor.init(red: 7/255, green: 27/255, blue: 204/255, alpha: 1).cgColor)
+                              bgColor: UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor)
         
         styles.styleUIButtons(button: english_button,
                               font: UIFont(name: "Menlo", size: 15)!,
@@ -59,7 +59,7 @@ class ViewController2: UIViewController,
                               radius: 10,
                               borderWidth: 1.4,
                               borderColor: UIColor.lightGray.cgColor,
-                              bgColor: UIColor.init(red: 204/255, green: 8/255, blue: 20/255, alpha: 1).cgColor)
+                              bgColor: UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1).cgColor)
 		
 		styles.styleUIButtons(button: add,
 							  font: UIFont(name: "Menlo", size: 15)!,
@@ -67,7 +67,7 @@ class ViewController2: UIViewController,
 							  radius: 10,
 							  borderWidth: 1.4,
 							  borderColor: UIColor.lightGray.cgColor,
-							  bgColor: UIColor.init(red: 7/255, green: 27/255, blue: 204/255, alpha: 1).cgColor)
+							  bgColor: UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor)
 		
 		styles.styleUITextField(textField: add_french,
 								font: UIFont(name: "Menlo", size: 15)!,
@@ -87,7 +87,7 @@ class ViewController2: UIViewController,
 								radius: 10,
 								borderWidth: 1.4,
 								borderColor: UIColor.lightGray.cgColor,
-								bgColor: UIColor.init(red: 208/255, green: 250/255, blue: 164/255, alpha: 1).cgColor)
+								bgColor: UIColor.init(red: 238/255, green: 237/255, blue: 243/255, alpha: 1).cgColor)
 		
 	//------------------------------
 	
@@ -135,20 +135,20 @@ class ViewController2: UIViewController,
             english_button.isHidden = false
 			
             add.setTitle("Ajouter", for: .normal)
-			add.layer.backgroundColor = UIColor.init(red: 7/255, green: 27/255, blue: 204/255, alpha: 1).cgColor
+			add.layer.backgroundColor = UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor
 			
             go_dictionary.setTitle("Retour", for: .normal)
-			go_dictionary.layer.backgroundColor = UIColor.init(red: 7/255, green: 27/255, blue: 204/255, alpha: 1).cgColor
+			go_dictionary.layer.backgroundColor = UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor
 			
 		case 1:                                             /* English */
             french_button.isHidden = false
             english_button.isHidden = true
 			
             add.setTitle("Add", for: .normal)
-			add.layer.backgroundColor = UIColor.init(red: 204/255, green: 8/255, blue: 20/255, alpha: 1).cgColor
+			add.layer.backgroundColor = UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1).cgColor
 			
             go_dictionary.setTitle("Back", for: .normal)
-			go_dictionary.layer.backgroundColor = UIColor.init(red: 204/255, green: 8/255, blue: 20/255, alpha: 1).cgColor
+			go_dictionary.layer.backgroundColor = UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1).cgColor
         default:
             break
         }

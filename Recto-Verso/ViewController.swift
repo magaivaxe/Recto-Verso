@@ -1,16 +1,11 @@
-
-
-//----------- Librarys -----------
+//----------- Libraries -----------
 import UIKit
-//--------------------------------
-
+//---------------------------------
 class ViewController: UIViewController,
 					  UITableViewDelegate,
 					  UITableViewDataSource
 {
-	
-	
-//------------ Outlets -------------
+	//------------ Outlets -------------
 	@IBOutlet weak var logo: UIImageView!
 	@IBOutlet weak var go_insert_words: UIButton!
 	@IBOutlet weak var seg_control_1: UISegmentedControl!
@@ -46,15 +41,16 @@ class ViewController: UIViewController,
 	@IBOutlet weak var x: UIButton!
 	@IBOutlet weak var y: UIButton!
 	@IBOutlet weak var z: UIButton!
-	
 	//----------------------------------
 	
-//----------- Variables ------------
+	//----------- Variables ------------
 	var arrayOfLetters: [String]!
 	var arrayOfButtons: [UIButton]!
 	var arrayOfFrenchWordsV1: [String]!
 	var arrayOfEnglishWordsV1: [String]!
-//----------------------------------
+	//----------------------------------
+	
+	//===================================== ViewDidLoad =====================================
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
@@ -118,7 +114,7 @@ class ViewController: UIViewController,
 		                        borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
 							 	bgColor: UIColor.init(red: 238/255, green: 237/255, blue: 243/255, alpha: 1).cgColor)
 		
-	//--------------------------------------------------
+	//-------------------- Styles ----------------------
 	
 		
 	//---------- Set text to buttons ---------
@@ -128,17 +124,82 @@ class ViewController: UIViewController,
 		                         arrayOfText: arrayOfLetters,
 		                         numberOfButtons: 26)
 		
+		styles.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons,
+		                           alpha: 0.5)
+		
+		arrayOfButtons[0].alpha = 1
+		
+		
+		
 	//-----------------------------------------
 	}
+	//=======================================================================================
+	
 	//=================== Alphabetical Buttons ========================
 	
 	@IBAction func alphabetical_buttons(_ sender: UIButton)
 	{
+		let alpha = Styles()
 		
-		
+		switch sender.tag
+		{
+			case 0:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 1:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 2:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 3:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 4:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 5:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 6:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 7:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 8:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 9:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 10:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 11:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 12:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 13:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 14:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 15:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 16:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 17:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 18:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 19:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 20:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 21:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 22:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 23:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 24:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			case 25:
+				alpha.styleAlphaOfButtons(arrayOfButtons: arrayOfButtons, alpha: 0.5)
+			default:
+				break
+		}
+		arrayOfButtons[sender.tag].alpha = 1 			/* To hold the button activated */
 	}
-	
-	
 	//=================================================================
 	
 	//=================== Function to fill arrays =====================
