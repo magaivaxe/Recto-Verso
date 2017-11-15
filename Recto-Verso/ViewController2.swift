@@ -217,7 +217,10 @@ class ViewController2: UIViewController,
 		                                            reuseIdentifier: nil)
 		dictRectoVerso = Dictionary(uniqueKeysWithValues: zip(arrayFrenchWords, arrayEnglishWords))
 		
-		//To do the sorted dictionary**********************************************************************************************
+		let tupleFrenchSorted = dictRectoVerso.sorted(by: {$0.0 < $1.0})	/* Sorted by french words */
+		let tupleEnglishSorted = dictRectoVerso.sorted(by: {$0.1 < $1.1})	/* Sorted by english words */
+		
+//		let frenchToEnglish
 		
 		let french = [String](dictRectoVerso.keys)[indexPath.row]
 		let english = [String](dictRectoVerso.values)[indexPath.row]

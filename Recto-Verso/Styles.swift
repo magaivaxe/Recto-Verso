@@ -9,7 +9,9 @@ import UIKit
 
 class Styles
 {
-	//------------- Buttons -----------------
+	//======================= Buttons =======================
+	
+	//- One button -
 	func styleUIButtons(button b: UIButton,
 						font f: UIFont,
 						title t: String,
@@ -27,7 +29,9 @@ class Styles
 		b.setTitle(t, for: .normal)
 		b.titleLabel?.adjustsFontSizeToFitWidth = true
 	}
+	//--------------
 	
+	//- Buttons Arrays -
 	func styleArrayOfUIButtons(arrayOfButtons ab: [UIButton],
 	                           font f: UIFont,
 	                           fontColor fc: UIColor,
@@ -47,7 +51,9 @@ class Styles
 			b.titleLabel?.textColor = fc
 		}
 	}
+	//------------------
 	
+	//- Color buttons arrays -
 	func styleColorsOfButtons(arrayOfButtons ab: [UIButton],
 	                          colors c: CGColor?)
 	{
@@ -56,7 +62,9 @@ class Styles
 			b.layer.backgroundColor = c
 		}
 	}
+	//------------------------
 	
+	//- Alpha buttons arrays -
 	func styleAlphaOfButtons(arrayOfButtons ab: [UIButton],
 	                         alpha a: CGFloat)
 	{
@@ -65,7 +73,11 @@ class Styles
 			b.alpha = a
 		}
 	}
-	//---------------------------------------
+	//------------------------
+	
+	//=======================================================
+	
+	//--- The others ---
 	func styleUISegmentedControl(segmentedControl sc: UISegmentedControl,
 	                             radius r: CGFloat,
 	                             borderWidth bw: CGFloat,
@@ -81,6 +93,23 @@ class Styles
 		sc.layer.backgroundColor = bg
 	}
 	
+	func styleUITextField(textField tv: UITextField,
+	                      font f: UIFont,
+	                      radius r: CGFloat,
+	                      borderWidth bw: CGFloat,
+	                      borderColor bc: CGColor,
+	                      bgColor bg: CGColor?)
+	{
+		tv.clipsToBounds = true
+		tv.font = f
+		tv.layer.cornerRadius = r
+		tv.layer.borderWidth = bw
+		tv.layer.borderColor = bc
+		tv.layer.backgroundColor = bg
+	}
+	//------------------
+	
+	//====================== The views ======================
 	func styleUITextViews(textView tv: UITextView,
 	                      radius r: CGFloat,
 						  font f: UIFont,
@@ -113,20 +142,7 @@ class Styles
 		tv.layer.backgroundColor = bg
 	}
 	
-	func styleUITextField(textField tv: UITextField,
-	                      font f: UIFont,
-	                      radius r: CGFloat,
-	                      borderWidth bw: CGFloat,
-	                      borderColor bc: CGColor,
-	                      bgColor bg: CGColor?)
-	{
-		tv.clipsToBounds = true
-		tv.font = f
-		tv.layer.cornerRadius = r
-		tv.layer.borderWidth = bw
-		tv.layer.borderColor = bc
-		tv.layer.backgroundColor = bg
-	}
+	
     
     func styleUIScrollView(scrollView sv: UIScrollView,
                            radius r: CGFloat,
@@ -151,7 +167,7 @@ class Styles
 		iv.layer.borderWidth = bw
 		iv.layer.borderColor = bc
 	}
-	
+	//=======================================================
 }
 
 
