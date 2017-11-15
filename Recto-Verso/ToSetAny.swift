@@ -17,8 +17,6 @@ class ToSetAny
 			ab[i].setTitle(at[i], for: .normal)
 		}
 	}
-	
-	
 }
 
 

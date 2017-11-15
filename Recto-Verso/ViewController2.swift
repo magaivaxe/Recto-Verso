@@ -30,11 +30,11 @@ class ViewController2: UIViewController,
 	{
 		super.viewDidLoad()
         
-    //--------- Saves Menager ---------
+    //- Saves Menager -
         loadSaves()
-    //---------------------------------
+    //-----------------
 		
-	//------------ Styles -------------
+	//---------------------------------- Styles ---------------------------------------
 		let styles = Styles()
 		
 		styles.styleUIButtons(button: go_dictionary,
@@ -42,7 +42,7 @@ class ViewController2: UIViewController,
 							  title: "Retour/Back",
 							  radius: 10,
 							  borderWidth: 1.4,
-							  borderColor: UIColor.lightGray.cgColor,
+							  borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
 							  bgColor: UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor)
         
         styles.styleUIButtons(button: french_button,
@@ -50,7 +50,7 @@ class ViewController2: UIViewController,
                               title: "Français",
                               radius: 10,
                               borderWidth: 1.4,
-                              borderColor: UIColor.lightGray.cgColor,
+                              borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
                               bgColor: UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor)
         
         styles.styleUIButtons(button: english_button,
@@ -58,7 +58,7 @@ class ViewController2: UIViewController,
                               title: "English",
                               radius: 10,
                               borderWidth: 1.4,
-                              borderColor: UIColor.lightGray.cgColor,
+                              borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
                               bgColor: UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1).cgColor)
 		
 		styles.styleUIButtons(button: add,
@@ -66,41 +66,41 @@ class ViewController2: UIViewController,
 							  title: "Ajouter/Add",
 							  radius: 10,
 							  borderWidth: 1.4,
-							  borderColor: UIColor.lightGray.cgColor,
+							  borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
 							  bgColor: UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor)
 		
 		styles.styleUITextField(textField: add_french,
 								font: UIFont(name: "Menlo", size: 15)!,
 								radius: 10,
 								borderWidth: 1.4,
-								borderColor: UIColor.lightGray.cgColor,
+								borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
 								bgColor: UIColor.white.cgColor)
 		
 		styles.styleUITextField(textField: add_english,
 								font: UIFont(name: "Menlo", size: 15)!,
 								radius: 10,
 								borderWidth: 1.4,
-								borderColor: UIColor.lightGray.cgColor,
+								borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
 								bgColor: UIColor.white.cgColor)
 		
 		styles.styleUITableView(tableView: table_view,
 								radius: 10,
 								borderWidth: 1.4,
-								borderColor: UIColor.lightGray.cgColor,
+								borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
 								bgColor: UIColor.init(red: 238/255, green: 237/255, blue: 243/255, alpha: 1).cgColor)
 		
-	//------------------------------
+	//-----------------------------------------------------------------------------------
 	
-	//---------- TextViews ---------
+	//---------------- TextViews -------------------
 		add_french.placeholder = "Inserez un mot..."
 		add_english.placeholder = "Insert a word..."
-	//------------------------------
+	//----------------------------------------------
 		
-	//----------- Buttons ----------
+	//------------------- Buttons ------------------
         french_button.isHidden = true
         add.setTitle("Ajouter", for: .normal)
         go_dictionary.setTitle("Retour", for: .normal)
-	//------------------------------
+	//----------------------------------------------
 		
 	//--------- Table View ---------
 		
@@ -109,9 +109,9 @@ class ViewController2: UIViewController,
     }
 //====================================================================================
     
-	//----------- Buttons ----------
-    
-    //-- Save words --
+	//================================== All buttons =================================
+	
+    //----------- Add and save traductions -------------
 	@IBAction func add_words(_ sender: UIButton)
 	{
 		let save = SaveLoadMenager()			/* Load the class locally */
@@ -124,13 +124,14 @@ class ViewController2: UIViewController,
 		
 		table_view.reloadData()
 	}
-    //----------------
-    
+    //--------------------------------------------------
+	
+	//------------- Change view2 language --------------
     @IBAction func change_language(_ sender: UIButton)
     {
         switch sender.tag
         {
-        case 0:                                             /* French */
+        case 0:                                             /* French - blue */
             french_button.isHidden = true
             english_button.isHidden = false
 			
@@ -140,7 +141,7 @@ class ViewController2: UIViewController,
             go_dictionary.setTitle("Retour", for: .normal)
 			go_dictionary.layer.backgroundColor = UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor
 			
-		case 1:                                             /* English */
+		case 1:                                             /* English - red */
             french_button.isHidden = false
             english_button.isHidden = true
 			
@@ -152,11 +153,13 @@ class ViewController2: UIViewController,
         default:
             break
         }
+		table_view.reloadData() 			/* Call the table view function according to case 0 and case 1 */
     }
+	//--------------------------------------------------
 	
-	//------------------------------
+	//================================================================================
 	
-	//-- Saves Menager --
+	//============================== Initial save and load ==============================
 	func loadSaves()
 	{
 		let load = SaveLoadMenager()			/* Load the class locally */
@@ -176,27 +179,24 @@ class ViewController2: UIViewController,
 			/* Create the files*/
 			load.save(theData: arrayFrenchWords as AnyObject, fileName: "french")
 			load.save(theData: arrayEnglishWords as AnyObject, fileName: "english")
-			
 		}
 	}
-	//-------------------
-
+	//===================================================================================
 	
-//------------ TableView -----------
+	//=================================== Table View ====================================
 	
-	//- Number of lines-
+	//-------------- Number of lines ---------------
 	func tableView(_ tableView: UITableView,
 	               numberOfRowsInSection section: Int) -> Int
 	{
 		return arrayFrenchWords.count /* Its load the number of elements */
 	}
-	//------------------
+	//----------------------------------------------
 	
-	//- Cell configuration -
+	//---------- Show cells information ------------
 	func tableView(_ tableView: UITableView,
 	               cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
-		
 		let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default,
 		                                            reuseIdentifier: nil)
 		dictRectoVerso = Dictionary(uniqueKeysWithValues: zip(arrayFrenchWords, arrayEnglishWords))
@@ -204,7 +204,7 @@ class ViewController2: UIViewController,
 		let french = [String](dictRectoVerso.keys)[indexPath.row]
 		let english = [String](dictRectoVerso.values)[indexPath.row]
 		
-		if french_button.isHidden == false	/* french*/
+		if french_button.isHidden == true	/* french*/
 		{
 			cell.textLabel?.text = "\(french) => \(english)"
 		}
@@ -214,13 +214,17 @@ class ViewController2: UIViewController,
 		}
 		return cell
 	}
+	//----------------------------------------------
 	
+	//-------------- Is it editable? ---------------
 	func tableView(_ tableView: UITableView,
 	               canEditRowAt indexPath: IndexPath) -> Bool
 	{
 		return true
 	}
+	//----------------------------------------------
 	
+	//---------------- Cell edition ----------------
 	func tableView(_ tableView: UITableView,
 	               commit editingStyle: UITableViewCellEditingStyle,
 	               forRowAt indexPath: IndexPath)
@@ -238,15 +242,9 @@ class ViewController2: UIViewController,
 			table_view.reloadData()
 		}
 	}
-	//-----------------------
+	//----------------------------------------------
 	
-	//- Cell edition -
-	
-	//----------------
-	
-//--------------------------------
-
-
+	//===================================================================================
 }
 
 

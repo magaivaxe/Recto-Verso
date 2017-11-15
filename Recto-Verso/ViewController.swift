@@ -253,7 +253,7 @@ class ViewController: UIViewController,
 	
 	//===================================================================================
 
-	//=================================== TABLE VIEW ====================================
+	//=================================== Table View ====================================
 	func tableView(_ tableView: UITableView,
 	               numberOfRowsInSection section: Int) -> Int
 	{
