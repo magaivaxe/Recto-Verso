@@ -1,14 +1,14 @@
 
 
-//----------- Librarys ------------
+//----------- Libraries ------------
 import UIKit
-//---------------------------------
+//----------------------------------
 
 class ViewController2: UIViewController,
 					   UITableViewDataSource, UITableViewDelegate
 {
 
-//------------ Outlets -------------
+	//------------ Outlets -------------
 	@IBOutlet weak var add_french: UITextField!
 	@IBOutlet weak var add_english: UITextField!
 	@IBOutlet weak var add: UIButton!
@@ -17,22 +17,22 @@ class ViewController2: UIViewController,
     @IBOutlet weak var english_button: UIButton!
     @IBOutlet weak var french_button: UIButton!
     @IBOutlet weak var buttons_view: UIView!
-//----------------------------------
+	//----------------------------------
 
-//----------- Variables ------------
+	//----------- Variables ------------
 	var dictRectoVerso : [String:String]!
 	var arrayFrenchWords : [String]!
 	var arrayEnglishWords : [String]!
-//----------------------------------
+	//----------------------------------
 
-//== ViewDidLoad =====================================================================
+	//================================== View Did Load ====================================
     override func viewDidLoad()
 	{
 		super.viewDidLoad()
         
-    //- Saves Menager -
+    //- Saves and load -
         loadSaves()
-    //-----------------
+    //------------------
 		
 	//---------------------------------- Styles ---------------------------------------
 		let styles = Styles()
@@ -102,27 +102,26 @@ class ViewController2: UIViewController,
         go_dictionary.setTitle("Retour", for: .normal)
 	//----------------------------------------------
 		
-	//--------- Table View ---------
-		
-		
-	//------------------------------
     }
-//====================================================================================
+	//===================================================================================
     
-	//================================== All buttons =================================
+	//=================================== All buttons ===================================
 	
     //----------- Add and save traductions -------------
 	@IBAction func add_words(_ sender: UIButton)
 	{
-		let save = SaveLoadMenager()			/* Load the class locally */
+		let save = SaveLoadMenager()		/* Load the class locally */
 		
-		arrayFrenchWords.append(add_french.text!)		/* append the words */
+		arrayFrenchWords.append(add_french.text!)		/* Append the words to arrays */
 		arrayEnglishWords.append(add_english.text!)
 		
-		save.save(theData: arrayFrenchWords as AnyObject, fileName: "french")
+		save.save(theData: arrayFrenchWords as AnyObject, fileName: "french")		/* Save the words in the arrays*/
 		save.save(theData: arrayEnglishWords as AnyObject, fileName: "english")
 		
-		table_view.reloadData()
+		add_french.text?.removeAll()		/* After to add clear text fields */
+		add_english.text?.removeAll()
+		
+		table_view.reloadData()				/* Table view new data reload  */
 	}
     //--------------------------------------------------
 	
@@ -157,7 +156,7 @@ class ViewController2: UIViewController,
     }
 	//--------------------------------------------------
 	
-	//================================================================================
+	//===================================================================================
 	
 	//============================== Initial save and load ==============================
 	func loadSaves()
