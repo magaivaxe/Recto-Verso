@@ -113,16 +113,16 @@ class ViewController2: UIViewController,
 	{
 		let save = SaveLoadMenager()		/* Load the class locally */
 		
-		if (add_french.text == nil || add_french.text == "" ||
+		if (add_french.text == nil || add_french.text == "" ||			/* To avoid eraser the dictionary and table view */
 			add_english.text == nil || add_english.text == "")
 		{
 			if french_button.isHidden == true
 			{
-				alertSimple(title: "Attention!", message: "Il faut ajouter un mot français et anglais.")
+				alertSimple(title: "Attention!", message: "Il faut ajouter un mot français et d'autre anglais.")
 			}
 			else
 			{
-				alertSimple(title: "Warning!", message: "You have add one french and english word.")
+				alertSimple(title: "Warning!", message: "You have to add one french and other english word.")
 			}
 			return
 		}
@@ -216,6 +216,8 @@ class ViewController2: UIViewController,
 		let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default,
 		                                            reuseIdentifier: nil)
 		dictRectoVerso = Dictionary(uniqueKeysWithValues: zip(arrayFrenchWords, arrayEnglishWords))
+		
+		//To do the sorted dictionary**********************************************************************************************
 		
 		let french = [String](dictRectoVerso.keys)[indexPath.row]
 		let english = [String](dictRectoVerso.values)[indexPath.row]
