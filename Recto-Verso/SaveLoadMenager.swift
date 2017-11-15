@@ -1,3 +1,9 @@
+/*
+
+Class to save and load files
+
+*/
+
 //-- Libraries --
 import Foundation
 //---------------

@@ -5,6 +5,7 @@ import UIKit
 //----------------------------------
 
 class ViewController2: UIViewController,
+					   UITextFieldDelegate,
 					   UITableViewDataSource, UITableViewDelegate
 {
 
@@ -112,16 +113,32 @@ class ViewController2: UIViewController,
 	{
 		let save = SaveLoadMenager()		/* Load the class locally */
 		
-		arrayFrenchWords.append(add_french.text!)		/* Append the words to arrays */
-		arrayEnglishWords.append(add_english.text!)
-		
-		save.save(theData: arrayFrenchWords as AnyObject, fileName: "french")		/* Save the words in the arrays*/
-		save.save(theData: arrayEnglishWords as AnyObject, fileName: "english")
-		
-		add_french.text?.removeAll()		/* After to add clear text fields */
-		add_english.text?.removeAll()
-		
-		table_view.reloadData()				/* Table view new data reload  */
+		if (add_french.text == nil || add_french.text == "" ||
+			add_english.text == nil || add_english.text == "")
+		{
+			if french_button.isHidden == true
+			{
+				alertSimple(title: "Attention!", message: "Il faut ajouter un mot français et anglais.")
+			}
+			else
+			{
+				alertSimple(title: "Warning!", message: "You have add one french and english word.")
+			}
+			return
+		}
+		else
+		{
+			arrayFrenchWords.append(add_french.text!)		/* Append the words to arrays */
+			arrayEnglishWords.append(add_english.text!)
+			
+			save.save(theData: arrayFrenchWords as AnyObject, fileName: "french")		/* Save the words in the arrays*/
+			save.save(theData: arrayEnglishWords as AnyObject, fileName: "english")
+			
+			add_french.text?.removeAll()		/* After to add clear text fields */
+			add_english.text?.removeAll()
+			
+			table_view.reloadData()				/* Table view new data reload  */
+		}
 	}
     //--------------------------------------------------
 	
@@ -184,7 +201,7 @@ class ViewController2: UIViewController,
 	
 	//=================================== Table View ====================================
 	
-	//-------------- Number of lines ---------------
+	//-------------- Number of cells ---------------
 	func tableView(_ tableView: UITableView,
 	               numberOfRowsInSection section: Int) -> Int
 	{
@@ -244,6 +261,40 @@ class ViewController2: UIViewController,
 	//----------------------------------------------
 	
 	//===================================================================================
+	
+	//================ Keyboard =================
+	
+	//----- Touches begin anything -----
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+	{
+		self.view.endEditing(true)		/* touches on view end the edition */
+	}
+	//----------------------------------
+	
+	//------ Field should return -------
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool
+	{
+		textField.resignFirstResponder()		/* Key return hide the keyboard on text fields */
+		return true
+	}
+	//----------------------------------
+	
+	//===========================================
+	
+	//================= Alerts ==================
+	func alertSimple(title t: String, message m: String)
+	{
+		let alert = UIAlertController(title: t, message: m, preferredStyle: UIAlertControllerStyle.alert)
+		
+		//- Buttons -
+		alert.addAction(UIAlertAction(title: "OK",
+									  style: UIAlertActionStyle.default,
+									  handler: { (action) in alert.dismiss(animated: true,
+																		   completion: nil)}))
+		//-----------
+		self.present(alert, animated: true, completion: nil)
+	}
+	//===========================================
 }
 
 

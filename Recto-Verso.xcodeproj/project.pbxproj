@@ -68,7 +68,6 @@
 		9B3A9BAC1FAB4F8F00505DE0 /* Recto-Verso */ = {
 			isa = PBXGroup;
 			children = (
-				9B5EB4C91FB349E100D5E9FE /* images */,
 				9B3A9BAD1FAB4F8F00505DE0 /* AppDelegate.swift */,
 				9B3A9BAF1FAB4F8F00505DE0 /* ViewController.swift */,
 				BFD42FC81FAC33AF002C4DE1 /* ViewController2.swift */,
@@ -79,6 +78,7 @@
 				9B3A9BB41FAB4F8F00505DE0 /* Assets.xcassets */,
 				9B3A9BB91FAB4F8F00505DE0 /* Info.plist */,
 				9B3A9BB61FAB4F8F00505DE0 /* LaunchScreen.storyboard */,
+				9B5EB4C91FB349E100D5E9FE /* images */,
 			);
 			path = "Recto-Verso";
 			sourceTree = "<group>";

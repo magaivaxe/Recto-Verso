@@ -222,6 +222,8 @@ class ViewController: UIViewController,
 		
 		arrayOfFrenchWordsV1 = load.loadData(fileName: "french") as! [String]
 		arrayOfEnglishWordsV1 = load.loadData(fileName: "english") as! [String]
+		
+		//do one check existing files to theses arrays as view2
 	}
 	//============================================================
 	
