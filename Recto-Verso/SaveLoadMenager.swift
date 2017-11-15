@@ -1,3 +1,9 @@
+/*
+
+Class to save and load files
+
+*/
+
 //-- Libraries --
 import Foundation
 //---------------
@@ -14,22 +20,22 @@ class SaveLoadMenager
 		return true
 	}
 	//-----------------------
-	//-- Save the file --
+	//---- Save the file ----
 	func save(theData: AnyObject, fileName: String)
 	{
 		UserDefaults.standard.set(theData, forKey: fileName)
 	}
-	//-------------------
-	//-- Delete file --
+	//-----------------------
+	//----- Delete file -----
 	func deleteFile(fileName: String)
 	{
 		UserDefaults.standard.removeObject(forKey: fileName)
 	}
-	//-----------------
-	//-- Load file --
+	//-----------------------
+	//------ Load file ------
 	func loadData(fileName: String) -> AnyObject
 	{
 		return UserDefaults.standard.object(forKey: fileName) as AnyObject
 	}
-	//-----------------
+	//-----------------------
 }

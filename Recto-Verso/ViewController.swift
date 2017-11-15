@@ -222,6 +222,8 @@ class ViewController: UIViewController,
 		
 		arrayOfFrenchWordsV1 = load.loadData(fileName: "french") as! [String]
 		arrayOfEnglishWordsV1 = load.loadData(fileName: "english") as! [String]
+		
+		//do one check existing files to theses arrays as view2
 	}
 	//============================================================
 	
@@ -253,7 +255,7 @@ class ViewController: UIViewController,
 	
 	//===================================================================================
 
-	//=================================== TABLE VIEW ====================================
+	//=================================== Table View ====================================
 	func tableView(_ tableView: UITableView,
 	               numberOfRowsInSection section: Int) -> Int
 	{
