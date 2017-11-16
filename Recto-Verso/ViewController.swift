@@ -48,15 +48,6 @@ class ViewController: UIViewController,
 	var arrayOfButtons: [UIButton]!
 	var arrayOfFrenchWords: [String]!
 	var arrayOfEnglishWords: [String]!
-	
-	var frKeys: [String]!
-	var enKeys: [String]!
-	var enValues: [String]!
-	var frValues: [String]!
-	
-	var tupleFrenchEnglish: [(String, String)]!
-	var tupleEnglishFrench: [(String, String)]!
-	
 	//----------------------------------
 	
 	//===================================== ViewDidLoad =====================================
@@ -109,7 +100,7 @@ class ViewController: UIViewController,
 								textAlignment: NSTextAlignment.left,
 								borderWidth: 1.4,
 								borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
-								bgColor: UIColor.init(red: 238/255, green: 237/255, blue: 243/255, alpha: 1).cgColor)
+								bgColor: UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor)
         
         styles.styleUIScrollView(scrollView: scroll_view,
                                  radius: 10,
@@ -137,9 +128,6 @@ class ViewController: UIViewController,
 		                           alpha: 0.5)
 		
 		arrayOfButtons[0].alpha = 1
-		
-		
-		
 	//-----------------------------------------
 	}
 	//=======================================================================================
@@ -244,10 +232,6 @@ class ViewController: UIViewController,
 			load.save(theData: arrayOfFrenchWords as AnyObject, fileName: "french")
 			load.save(theData: arrayOfEnglishWords as AnyObject, fileName: "english")
 		}
-		
-		
-		
-		//do one check existing files to theses arrays as view2
 	}
 	//============================================================
 	
@@ -275,6 +259,7 @@ class ViewController: UIViewController,
 			                                 colors: UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1).cgColor)
 			seg_control_1.tintColor = UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1)
 		}
+		show_words.reloadData()
 	}
 	
 	//===================================================================================
@@ -291,6 +276,13 @@ class ViewController: UIViewController,
 	{
 		let cell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default,
 		                                           reuseIdentifier: nil)
+		var frKeys = [String]()
+		var enKeys = [String]()
+		var enValues = [String]()
+		var frValues = [String]()
+		
+		var tupleFrenchEnglish = [(String, String)]()
+		var tupleEnglishFrench = [(String, String)]()
 		
 		let dictFrenchEnglish = Dictionary(uniqueKeysWithValues: zip(arrayOfFrenchWords, arrayOfEnglishWords))
 		let dictEnglishFrench = Dictionary(uniqueKeysWithValues: zip(arrayOfEnglishWords, arrayOfFrenchWords))
@@ -304,33 +296,43 @@ class ViewController: UIViewController,
 			{
 				for (fr, en) in tupleFrenchEnglish		/* french loop */
 				{
-					if fr.hasPrefix(arrayOfLetters[i].lowercased())
+					if fr.hasPrefix(arrayOfLetters[i].lowercased()) == true
 					{
 						frKeys.append(fr)
 						enValues.append(en)
 					}
+					else
+					{
+						let FrMessage = "Il manque des mots avec \(arrayOfLetters[i])"
+						frKeys = [FrMessage]
+					}
 				}
 				for (en, fr) in tupleEnglishFrench		/* english loop */
 				{
-					if en.hasPrefix(arrayOfLetters[i].lowercased())
+					if en.hasPrefix(arrayOfLetters[i].lowercased()) == true
 					{
 						enKeys.append(en)
 						frValues.append(fr)
+					}
+					else
+					{
+						let EnMessage = "Miss words with \(arrayOfLetters[i])"
+						enKeys = [EnMessage]
 					}
 				}
 			}
 			i = i + 1
 		}
+		let frKeysString = frKeys[indexPath.row]
+		let enKeysString = enKeys[indexPath.row]
 		
 		if seg_control_1.selectedSegmentIndex == 0		/* français */
 		{
-			let frToTableView = frKeys[indexPath.row]
-			cell.textLabel?.text = "\(frToTableView)"
+			cell.textLabel?.text = "\(frKeysString)"
 		}
-		else
+		else											/* englais */
 		{
-			let enToTableView = enKeys[indexPath.row]
-			cell.textLabel?.text = "\(enToTableView)"
+			cell.textLabel?.text = "\(enKeysString)"
 		}
 		return cell
 	}
