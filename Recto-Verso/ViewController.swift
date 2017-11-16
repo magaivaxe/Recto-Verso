@@ -48,6 +48,11 @@ class ViewController: UIViewController,
 	var arrayOfButtons: [UIButton]!
 	var arrayOfFrenchWords: [String]!
 	var arrayOfEnglishWords: [String]!
+	
+	var frKeys: [String]!
+	var enKeys: [String]!
+	var enValues: [String]!
+	var frValues: [String]!
 	//----------------------------------
 	
 	//===================================== ViewDidLoad =====================================
@@ -199,6 +204,8 @@ class ViewController: UIViewController,
 				break
 		}
 		arrayOfButtons[sender.tag].alpha = 1 			/* To hold the button activated */
+		
+		show_words.reloadData()
 	}
 	//=================================================================
 	
@@ -287,14 +294,8 @@ class ViewController: UIViewController,
 		let tupleFrenchEnglish = dictFrenchEnglish.sorted(by: { $0.0 < $1.0 })
 		let tupleEnglishFrench = dictEnglishFrench.sorted(by: { $0.0 < $1.0 })
 		
-		var frKeys: [String]!
-		var enKeys: [String]!
-		var enValues: [String]!
-		var frValues: [String]!
-		
-		switch seg_control_1.selectedSegmentIndex
+		if seg_control_1.selectedSegmentIndex == 0
 		{
-		case 0:		/* french */
 			for button in arrayOfButtons
 			{
 				for letter in arrayOfLetters
@@ -312,7 +313,11 @@ class ViewController: UIViewController,
 					}
 				}
 			}
-		case 1:		/* english */
+			let frToTableView = frKeys[indexPath.row]
+			cell.textLabel?.text = "\(frToTableView)"
+		}
+		else if seg_control_1.selectedSegmentIndex == 1
+		{
 			for button in arrayOfButtons
 			{
 				for letter in arrayOfLetters
@@ -330,16 +335,6 @@ class ViewController: UIViewController,
 					}
 				}
 			}
-		default:
-			break
-		}
-		if seg_control_1.selectedSegmentIndex == 0
-		{
-			let frToTableView = frKeys[indexPath.row]
-			cell.textLabel?.text = "\(frToTableView)"
-		}
-		else
-		{
 			let enToTableView = enKeys[indexPath.row]
 			cell.textLabel?.text = "\(enToTableView)"
 		}
