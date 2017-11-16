@@ -53,6 +53,10 @@ class ViewController: UIViewController,
 	var enKeys: [String]!
 	var enValues: [String]!
 	var frValues: [String]!
+	
+	var tupleFrenchEnglish: [(String, String)]!
+	var tupleEnglishFrench: [(String, String)]!
+	
 	//----------------------------------
 	
 	//===================================== ViewDidLoad =====================================
@@ -291,50 +295,40 @@ class ViewController: UIViewController,
 		let dictFrenchEnglish = Dictionary(uniqueKeysWithValues: zip(arrayOfFrenchWords, arrayOfEnglishWords))
 		let dictEnglishFrench = Dictionary(uniqueKeysWithValues: zip(arrayOfEnglishWords, arrayOfFrenchWords))
 		
-		let tupleFrenchEnglish = dictFrenchEnglish.sorted(by: { $0.0 < $1.0 })
-		let tupleEnglishFrench = dictEnglishFrench.sorted(by: { $0.0 < $1.0 })
+		tupleFrenchEnglish = dictFrenchEnglish.sorted(by: { $0.0 < $1.0 })
+		tupleEnglishFrench = dictEnglishFrench.sorted(by: { $0.0 < $1.0 })
 		
-		if seg_control_1.selectedSegmentIndex == 0
+		var i = 0; while i < 26
 		{
-			for button in arrayOfButtons
+			if arrayOfButtons[i].alpha == 1
 			{
-				for letter in arrayOfLetters
+				for (fr, en) in tupleFrenchEnglish		/* french loop */
 				{
-					if button.alpha == 1 && button.currentTitle == letter
+					if fr.hasPrefix(arrayOfLetters[i].lowercased())
 					{
-						for ( fr , en ) in tupleFrenchEnglish
-						{
-							if fr.hasPrefix(letter) == true
-							{
-								frKeys.append(fr)
-								enValues.append(en)
-							}
-						}
+						frKeys.append(fr)
+						enValues.append(en)
+					}
+				}
+				for (en, fr) in tupleEnglishFrench		/* english loop */
+				{
+					if en.hasPrefix(arrayOfLetters[i].lowercased())
+					{
+						enKeys.append(en)
+						frValues.append(fr)
 					}
 				}
 			}
+			i = i + 1
+		}
+		
+		if seg_control_1.selectedSegmentIndex == 0		/* français */
+		{
 			let frToTableView = frKeys[indexPath.row]
 			cell.textLabel?.text = "\(frToTableView)"
 		}
-		else if seg_control_1.selectedSegmentIndex == 1
+		else
 		{
-			for button in arrayOfButtons
-			{
-				for letter in arrayOfLetters
-				{
-					if button.alpha == 1 && button.currentTitle == letter
-					{
-						for ( en , fr ) in tupleEnglishFrench
-						{
-							if en.hasPrefix(letter) == true
-							{
-								enKeys.append(en)
-								frValues.append(fr)
-							}
-						}
-					}
-				}
-			}
 			let enToTableView = enKeys[indexPath.row]
 			cell.textLabel?.text = "\(enToTableView)"
 		}
