@@ -21,7 +21,8 @@ class ViewController2: UIViewController,
 	//----------------------------------
 
 	//----------- Variables ------------
-	var dictRectoVerso : [String:String]!
+	var dictFrenchEnglish : [String:String]!
+	var dictEnglishFrench : [String:String]!
 	var arrayFrenchWords : [String]!
 	var arrayEnglishWords : [String]!
 	//----------------------------------
@@ -122,7 +123,7 @@ class ViewController2: UIViewController,
 			}
 			else
 			{
-				alertSimple(title: "Warning!", message: "You have to add one french and other english word.")
+				alertSimple(title: "Warning!", message: "You have to add a french and other english word.")
 			}
 			return
 		}
@@ -215,23 +216,44 @@ class ViewController2: UIViewController,
 	{
 		let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default,
 		                                            reuseIdentifier: nil)
-		dictRectoVerso = Dictionary(uniqueKeysWithValues: zip(arrayFrenchWords, arrayEnglishWords))
+		dictFrenchEnglish = Dictionary(uniqueKeysWithValues: zip(arrayFrenchWords, arrayEnglishWords))		/* [key:Value] */
+		dictEnglishFrench = Dictionary(uniqueKeysWithValues: zip(arrayEnglishWords, arrayFrenchWords))
 		
-		let tupleFrenchSorted = dictRectoVerso.sorted(by: {$0.0 < $1.0})	/* Sorted by french words */
-		let tupleEnglishSorted = dictRectoVerso.sorted(by: {$0.1 < $1.1})	/* Sorted by english words */
+		let tupleFrenchSorted = dictFrenchEnglish.sorted(by: {$0.0 < $1.0})		/* Sorted by key french words */
+		let tupleEnglishSorted = dictEnglishFrench.sorted(by: {$0.0 < $1.0})	/* Sorted by value english words */
 		
-//		let frenchToEnglish
+		var frenchToEnglishKey = [String]()			/* Arrays to fill sorted french to english */
+		var frenchToEnglishValue = [String]()
 		
-		let french = [String](dictRectoVerso.keys)[indexPath.row]
-		let english = [String](dictRectoVerso.values)[indexPath.row]
+		var englishToFrenchKey = [String]()			/* Arrays to fill sorted english to french */
+		var englishToFrenchValue = [String]()
 		
-		if french_button.isHidden == true	/* french*/
+		for (key, value) in tupleFrenchSorted		/* Loop to fill a sorted array */
 		{
-			cell.textLabel?.text = "\(french) => \(english)"
+			frenchToEnglishKey.append(key)
+			frenchToEnglishValue.append(value)
 		}
-		else
+		
+		for (key, value) in tupleEnglishSorted
 		{
-			cell.textLabel?.text = "\(english) => \(french)"
+			englishToFrenchKey.append(key)
+			englishToFrenchValue.append(value)
+		}
+		
+		let frenchToEnglishKeyIsFrench = frenchToEnglishKey[indexPath.row]
+		let frenchToEnglishValueIsEnglish = frenchToEnglishValue[indexPath.row]
+		
+		let englishToFrenchKeyIsEnglish = englishToFrenchKey[indexPath.row]
+		let englishToFrenchValueIsFrench = englishToFrenchValue[indexPath.row]
+
+		
+		if french_button.isHidden == true	/* french */
+		{
+			cell.textLabel?.text = "\(frenchToEnglishKeyIsFrench) => \(frenchToEnglishValueIsEnglish)"
+		}
+		else								/* english */
+		{
+			cell.textLabel?.text = "\(englishToFrenchKeyIsEnglish) => \(englishToFrenchValueIsFrench)"
 		}
 		return cell
 	}
