@@ -21,8 +21,6 @@ class ViewController2: UIViewController,
 	//----------------------------------
 
 	//----------- Variables ------------
-	var dictFrenchEnglish : [String:String]!
-	var dictEnglishFrench : [String:String]!
 	var arrayFrenchWords : [String]!
 	var arrayEnglishWords : [String]!
 	//----------------------------------
@@ -216,27 +214,27 @@ class ViewController2: UIViewController,
 	{
 		let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default,
 		                                            reuseIdentifier: nil)
-		dictFrenchEnglish = Dictionary(uniqueKeysWithValues: zip(arrayFrenchWords, arrayEnglishWords))		/* [key:Value] */
-		dictEnglishFrench = Dictionary(uniqueKeysWithValues: zip(arrayEnglishWords, arrayFrenchWords))
+	
+		var frenchToEnglishKey: [String]!			/* Arrays to fill sorted french to english */
+		var frenchToEnglishValue: [String]!
+		var englishToFrenchKey: [String]!			/* Arrays to fill sorted english to french */
+		var englishToFrenchValue: [String]!
+		
+		let dictFrenchEnglish = Dictionary(uniqueKeysWithValues: zip(arrayFrenchWords, arrayEnglishWords))
+		let dictEnglishFrench = Dictionary(uniqueKeysWithValues: zip(arrayEnglishWords, arrayFrenchWords))
 		
 		let tupleFrenchSorted = dictFrenchEnglish.sorted(by: {$0.0 < $1.0})		/* Sorted by key french words */
-		let tupleEnglishSorted = dictEnglishFrench.sorted(by: {$0.0 < $1.0})	/* Sorted by value english words */
-		
-		var frenchToEnglishKey = [String]()			/* Arrays to fill sorted french to english */
-		var frenchToEnglishValue = [String]()
-		
-		var englishToFrenchKey = [String]()			/* Arrays to fill sorted english to french */
-		var englishToFrenchValue = [String]()
+		let tupleEnglishSorted = dictEnglishFrench.sorted(by: {$0.0 < $1.0})	/* Sorted by key english words */
 		
 		for (key, value) in tupleFrenchSorted		/* Loop to fill a sorted array */
 		{
-			frenchToEnglishKey.append(key)
+			frenchToEnglishKey.append(key)			/* French sorted arrays  */
 			frenchToEnglishValue.append(value)
 		}
 		
 		for (key, value) in tupleEnglishSorted
 		{
-			englishToFrenchKey.append(key)
+			englishToFrenchKey.append(key)			/* English sorted arrays  */
 			englishToFrenchValue.append(value)
 		}
 		

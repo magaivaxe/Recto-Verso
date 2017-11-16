@@ -46,8 +46,8 @@ class ViewController: UIViewController,
 	//----------- Variables ------------
 	var arrayOfLetters: [String]!
 	var arrayOfButtons: [UIButton]!
-	var arrayOfFrenchWordsV1: [String]!
-	var arrayOfEnglishWordsV1: [String]!
+	var arrayOfFrenchWords: [String]!
+	var arrayOfEnglishWords: [String]!
 	//----------------------------------
 	
 	//===================================== ViewDidLoad =====================================
@@ -220,8 +220,8 @@ class ViewController: UIViewController,
 	{
 		let load = SaveLoadMenager()
 		
-		arrayOfFrenchWordsV1 = load.loadData(fileName: "french") as! [String]
-		arrayOfEnglishWordsV1 = load.loadData(fileName: "english") as! [String]
+		arrayOfFrenchWords = load.loadData(fileName: "french") as! [String]
+		arrayOfEnglishWords = load.loadData(fileName: "english") as! [String]
 		
 		//do one check existing files to theses arrays as view2
 	}
@@ -259,7 +259,7 @@ class ViewController: UIViewController,
 	func tableView(_ tableView: UITableView,
 	               numberOfRowsInSection section: Int) -> Int
 	{
-		return arrayOfFrenchWordsV1.count
+		return arrayOfFrenchWords.count
 	}
 	
 	func tableView(_ tableView: UITableView,
@@ -268,9 +268,64 @@ class ViewController: UIViewController,
 		let cell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default,
 		                                           reuseIdentifier: nil)
 		
-		/* Insert here the codes cnditions to write on table_view*/
+		let dictFrenchEnglish = Dictionary(uniqueKeysWithValues: zip(arrayOfFrenchWords, arrayOfEnglishWords))
+		let dictEnglishFrench = Dictionary(uniqueKeysWithValues: zip(arrayOfEnglishWords, arrayOfFrenchWords))
 		
+		let tupleFrenchEnglish = dictFrenchEnglish.sorted(by: { $0.0 < $1.0 })
+		let tupleEnglishFrench = dictEnglishFrench.sorted(by: { $0.0 < $1.0 })
 		
+		var frKeys: [String]!
+		var enKeys: [String]!
+		var enValues: [String]!
+		var frValues: [String]!
+		
+		switch seg_control_1.selectedSegmentIndex
+		{
+		case 0:		/* french */
+			for button in arrayOfButtons
+			{
+				for letter in arrayOfLetters
+				{
+					if button.alpha == 1 && button.currentTitle == letter
+					{
+						for ( fr , en ) in tupleFrenchEnglish
+						{
+							if fr.hasPrefix(letter) == true
+							{
+								frKeys.append(fr)
+								enValues.append(en)
+							}
+						}
+					}
+				}
+			}
+			let frToTableView = frKeys[indexPath.row]
+			cell.textLabel?.text = "\(frToTableView)"
+			
+		case 1:		/* english */
+			for button in arrayOfButtons
+			{
+				for letter in arrayOfLetters
+				{
+					if button.alpha == 1 && button.currentTitle == letter
+					{
+						for ( en , fr ) in tupleEnglishFrench
+						{
+							if en.hasPrefix(letter) == true
+							{
+								enKeys.append(en)
+								frValues.append(fr)
+							}
+						}
+					}
+				}
+			}
+			let enToTableView = enKeys[indexPath.row]
+			cell.textLabel?.text = "\(enToTableView)"
+			
+		default:
+			break
+		}
 		return cell
 	}
 	
