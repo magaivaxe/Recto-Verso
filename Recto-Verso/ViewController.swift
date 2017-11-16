@@ -48,6 +48,17 @@ class ViewController: UIViewController,
 	var arrayOfButtons: [UIButton]!
 	var arrayOfFrenchWords: [String]!
 	var arrayOfEnglishWords: [String]!
+	
+	var frKeys = [String]()
+	var enKeys = [String]()
+	var enValues = [String]()
+	var frValues = [String]()
+	
+	var tupleFrenchEnglish = [(String, String)]()
+	var tupleEnglishFrench = [(String, String)]()
+	
+	var dictFrenchEnglish = [String:String]()
+	var dictEnglishFrench = [String:String]()
 	//----------------------------------
 	
 	//===================================== ViewDidLoad =====================================
@@ -62,6 +73,8 @@ class ViewController: UIViewController,
 		loader()
 	//-----------------
 	
+		arrayToDisplay()
+		
 	//-------------------- Styles ----------------------
 		let styles = Styles()
 		
@@ -195,9 +208,18 @@ class ViewController: UIViewController,
 			default:
 				break
 		}
-		arrayOfButtons[sender.tag].alpha = 1 			/* To hold the button activated */
+		arrayOfButtons[sender.tag].alpha = 1
 		
-		show_words.reloadData()
+		loader()
+		
+		arrayToDisplay()
+		
+		print(dictFrenchEnglish)
+		print(tupleFrenchEnglish)
+		print(frKeys)
+		
+		
+
 	}
 	//=================================================================
 	
@@ -263,29 +285,12 @@ class ViewController: UIViewController,
 	}
 	
 	//===================================================================================
-
-	//=================================== Table View ====================================
-	func tableView(_ tableView: UITableView,
-	               numberOfRowsInSection section: Int) -> Int
-	{
-		return arrayOfFrenchWords.count
-	}
 	
-	func tableView(_ tableView: UITableView,
-	               cellForRowAt indexPath: IndexPath) -> UITableViewCell
+	//==================================== Display ======================================
+	func arrayToDisplay()
 	{
-		let cell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default,
-		                                           reuseIdentifier: nil)
-		var frKeys = [String]()
-		var enKeys = [String]()
-		var enValues = [String]()
-		var frValues = [String]()
-		
-		var tupleFrenchEnglish = [(String, String)]()
-		var tupleEnglishFrench = [(String, String)]()
-		
-		let dictFrenchEnglish = Dictionary(uniqueKeysWithValues: zip(arrayOfFrenchWords, arrayOfEnglishWords))
-		let dictEnglishFrench = Dictionary(uniqueKeysWithValues: zip(arrayOfEnglishWords, arrayOfFrenchWords))
+		dictFrenchEnglish = Dictionary(uniqueKeysWithValues: zip(arrayOfFrenchWords, arrayOfEnglishWords))
+		dictEnglishFrench = Dictionary(uniqueKeysWithValues: zip(arrayOfEnglishWords, arrayOfFrenchWords))
 		
 		tupleFrenchEnglish = dictFrenchEnglish.sorted(by: { $0.0 < $1.0 })
 		tupleEnglishFrench = dictEnglishFrench.sorted(by: { $0.0 < $1.0 })
@@ -296,43 +301,65 @@ class ViewController: UIViewController,
 			{
 				for (fr, en) in tupleFrenchEnglish		/* french loop */
 				{
-					if fr.hasPrefix(arrayOfLetters[i].lowercased()) == true
+					if fr.hasPrefix(arrayOfLetters[i]) == true
 					{
 						frKeys.append(fr)
 						enValues.append(en)
 					}
 					else
 					{
-						let FrMessage = "Il manque des mots avec \(arrayOfLetters[i])"
+						let FrMessage = "Il manque des mots avec \(arrayOfLetters[i].lowercased())"
 						frKeys = [FrMessage]
 					}
 				}
 				for (en, fr) in tupleEnglishFrench		/* english loop */
 				{
-					if en.hasPrefix(arrayOfLetters[i].lowercased()) == true
+					if en.hasPrefix(arrayOfLetters[i]) == true
 					{
 						enKeys.append(en)
 						frValues.append(fr)
 					}
 					else
 					{
-						let EnMessage = "Miss words with \(arrayOfLetters[i])"
+						let EnMessage = "Miss words with \(arrayOfLetters[i].lowercased())"
 						enKeys = [EnMessage]
 					}
 				}
 			}
 			i = i + 1
 		}
-		let frKeysString = frKeys[indexPath.row]
-		let enKeysString = enKeys[indexPath.row]
-		
+		show_words.reloadData()
+	}
+	//===================================================================================
+
+	//=================================== Table View ====================================
+	func tableView(_ tableView: UITableView,
+	               numberOfRowsInSection section: Int) -> Int
+	{
 		if seg_control_1.selectedSegmentIndex == 0		/* français */
 		{
-			cell.textLabel?.text = "\(frKeysString)"
+			return frKeys.count
 		}
 		else											/* englais */
 		{
-			cell.textLabel?.text = "\(enKeysString)"
+			return enKeys.count
+		}
+	}
+	
+	func tableView(_ tableView: UITableView,
+	               cellForRowAt indexPath: IndexPath) -> UITableViewCell
+	{
+		let cell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default,
+		                                           reuseIdentifier: nil)
+		
+		
+		if seg_control_1.selectedSegmentIndex == 0		/* français */
+		{
+			cell.textLabel?.text = "\(frKeys[indexPath.row])"
+		}
+		else											/* englais */
+		{
+			cell.textLabel?.text = "\(enKeys[indexPath.row])"
 		}
 		return cell
 	}
