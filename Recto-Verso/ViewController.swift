@@ -220,8 +220,21 @@ class ViewController: UIViewController,
 	{
 		let load = SaveLoadMenager()
 		
-		arrayOfFrenchWords = load.loadData(fileName: "french") as! [String]
-		arrayOfEnglishWords = load.loadData(fileName: "english") as! [String]
+		if load.checkExistingSaves(fileName: "french") == true
+		{
+			arrayOfFrenchWords = load.loadData(fileName: "french") as! [String]
+			arrayOfEnglishWords = load.loadData(fileName: "english") as! [String]
+		}
+		else
+		{
+			arrayOfFrenchWords = [String]()
+			arrayOfEnglishWords = [String]()
+			
+			load.save(theData: arrayOfFrenchWords as AnyObject, fileName: "french")
+			load.save(theData: arrayOfEnglishWords as AnyObject, fileName: "english")
+		}
+		
+		
 		
 		//do one check existing files to theses arrays as view2
 	}
@@ -299,9 +312,6 @@ class ViewController: UIViewController,
 					}
 				}
 			}
-			let frToTableView = frKeys[indexPath.row]
-			cell.textLabel?.text = "\(frToTableView)"
-			
 		case 1:		/* english */
 			for button in arrayOfButtons
 			{
@@ -320,11 +330,18 @@ class ViewController: UIViewController,
 					}
 				}
 			}
-			let enToTableView = enKeys[indexPath.row]
-			cell.textLabel?.text = "\(enToTableView)"
-			
 		default:
 			break
+		}
+		if seg_control_1.selectedSegmentIndex == 0
+		{
+			let frToTableView = frKeys[indexPath.row]
+			cell.textLabel?.text = "\(frToTableView)"
+		}
+		else
+		{
+			let enToTableView = enKeys[indexPath.row]
+			cell.textLabel?.text = "\(enToTableView)"
 		}
 		return cell
 	}
