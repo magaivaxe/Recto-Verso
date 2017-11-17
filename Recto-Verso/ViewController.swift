@@ -53,6 +53,9 @@ class ViewController: UIViewController,
 	var enKeys = [String]()
 	var enValues = [String]()
 	var frValues = [String]()
+	
+	var tupleFrenchEnglishFiltered: [(String,String)]!
+	var tupleEnglishFrenchFiltered: [(String,String)]!
 	//----------------------------------
 	
 	//===================================== ViewDidLoad =====================================
@@ -99,8 +102,8 @@ class ViewController: UIViewController,
 									   bgColor: UIColor.init(red: 238/255, green: 237/255, blue: 243/255, alpha: 1).cgColor)
 		
 		styles.styleUILabel(label: label_traduction,
-							font: UIFont(name: "Menlo", size: 20)!,
-							textAlignment: NSTextAlignment.justified,
+							font: UIFont.systemFont(ofSize: 15),
+							textAlignment: NSTextAlignment.center,
 							radius: 10,
 							borderWidth: 1.4,
 							borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
@@ -118,9 +121,8 @@ class ViewController: UIViewController,
 		                        borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
 							 	bgColor: UIColor.init(red: 238/255, green: 237/255, blue: 243/255, alpha: 1).cgColor)
 		
-	//-------------------- Styles ----------------------
+	//--------------------------------------------------
 	
-		
 	//---------- Set text to buttons ---------
 		let setText = ToSetAny()
 		
@@ -132,6 +134,7 @@ class ViewController: UIViewController,
 		                           alpha: 0.5)
 		
 		arrayOfButtons[0].alpha = 1
+		label_traduction.text = ""
 		
 		arrayToDisplay()
 	//-----------------------------------------
@@ -268,7 +271,7 @@ class ViewController: UIViewController,
 			                                 colors: UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1).cgColor)
 			seg_control_1.tintColor = UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1)
 		}
-		show_words.reloadData()
+		arrayToDisplay()
 	}
 	
 	//===================================================================================
@@ -282,7 +285,7 @@ class ViewController: UIViewController,
 		let tupleFrenchEnglish = dictFrenchEnglish.sorted(by: { $0.0 < $1.0 })
 		let tupleEnglishFrench = dictEnglishFrench.sorted(by: { $0.0 < $1.0 })
 		
-		frKeys.removeAll()
+		frKeys.removeAll()			/* to avoid arrays concatenations */
 		enValues.removeAll()
 		enKeys.removeAll()
 		frValues.removeAll()
@@ -292,13 +295,13 @@ class ViewController: UIViewController,
 			if arrayOfButtons[i].alpha == 1
 			{
 				//Tuple filter by first string word character in [i].0
-				let tupleFrenchEnglishFiltered = tupleFrenchEnglish.filter({$0.0.hasPrefix(arrayOfLetters[i].lowercased())})
-				let tupleEnglishFrenchFiltered = tupleEnglishFrench.filter({$0.0.hasPrefix(arrayOfLetters[i].lowercased())})
+				tupleFrenchEnglishFiltered = tupleFrenchEnglish.filter({$0.0.hasPrefix(arrayOfLetters[i].lowercased())})
+				tupleEnglishFrenchFiltered = tupleEnglishFrench.filter({$0.0.hasPrefix(arrayOfLetters[i].lowercased())})
 				
-				for (fr, en) in tupleFrenchEnglishFiltered		/* french loop */
+				for (fr1, en1) in tupleFrenchEnglishFiltered		/* french loop */
 				{
-					frKeys.append(fr)
-					enValues.append(en)
+					frKeys.append(fr1)
+					enValues.append(en1)
 				}
 				if frKeys == []
 				{
@@ -306,10 +309,10 @@ class ViewController: UIViewController,
 					enValues.append("Mes excuses...")
 				}
 				
-				for (en, fr) in tupleEnglishFrenchFiltered		/* english loop */
+				for (en2, fr2) in tupleEnglishFrenchFiltered		/* english loop */
 				{
-					enKeys.append(en)
-					frValues.append(fr)
+					enKeys.append(en2)
+					frValues.append(fr2)
 				}
 				if enKeys == []
 				{
@@ -319,6 +322,8 @@ class ViewController: UIViewController,
 			}
 			i = i + 1
 		}
+		print(frKeys)
+		print(enValues)
 		show_words.reloadData()
 	}
 	//===================================================================================
@@ -358,13 +363,14 @@ class ViewController: UIViewController,
 	func tableView(_ tableView: UITableView,
 	               didDeselectRowAt indexPath: IndexPath)
 	{
+		
 		if seg_control_1.selectedSegmentIndex == 0		/* français */
 		{
-			label_traduction.text = "\(enValues[indexPath.row])"
+			label_traduction.text? = "\(enValues[indexPath.row])"
 		}
 		else											/* englais */
 		{
-			label_traduction.text = "\(frValues[indexPath.row])"
+			label_traduction.text? = "\(frValues[indexPath.row])"
 		}
 	}
 	//===================================================================================
