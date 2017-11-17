@@ -10,7 +10,7 @@ class ViewController: UIViewController,
 	@IBOutlet weak var go_insert_words: UIButton!
 	@IBOutlet weak var seg_control_1: UISegmentedControl!
     @IBOutlet weak var scroll_view: UIScrollView!
-	@IBOutlet weak var traduction: UITextView!
+	@IBOutlet weak var label_traduction: UILabel!
 	@IBOutlet weak var scroll_of_buttons: UIScrollView!
 	@IBOutlet weak var view_of_buttons: UIView!
 	@IBOutlet weak var show_words: UITableView!
@@ -98,15 +98,14 @@ class ViewController: UIViewController,
 									   borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
 									   bgColor: UIColor.init(red: 238/255, green: 237/255, blue: 243/255, alpha: 1).cgColor)
 		
-		styles.styleUITextViews(textView: traduction,
-								radius: 10,
-								font: UIFont(name: "Menlo", size: 20)!,
-								textColor: UIColor.white,
-								textAlignment: NSTextAlignment.left,
-								borderWidth: 1.4,
-								borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
-								bgColor: UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor)
-        
+		styles.styleUILabel(label: label_traduction,
+							font: UIFont(name: "Menlo", size: 20)!,
+							textAlignment: NSTextAlignment.justified,
+							radius: 10,
+							borderWidth: 1.4,
+							borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
+							bgColor: UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor)
+		
         styles.styleUIScrollView(scrollView: scroll_view,
                                  radius: 10,
                                  borderWidth: 1.4,
@@ -255,7 +254,7 @@ class ViewController: UIViewController,
 		{
 			go_insert_words.setTitle("+ Mots", for: .normal)
 			go_insert_words.layer.backgroundColor = UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor
-			traduction.layer.backgroundColor = UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor
+			label_traduction.layer.backgroundColor = UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor
 			buttonColor.styleColorsOfButtons(arrayOfButtons: arrayOfButtons,
 			                                 colors: UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor)
 			seg_control_1.tintColor = UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1)
@@ -264,7 +263,7 @@ class ViewController: UIViewController,
 		{
 			go_insert_words.setTitle("+ Words", for: .normal)
 			go_insert_words.layer.backgroundColor = UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1).cgColor
-			traduction.layer.backgroundColor = UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1).cgColor
+			label_traduction.layer.backgroundColor = UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1).cgColor
 			buttonColor.styleColorsOfButtons(arrayOfButtons: arrayOfButtons,
 			                                 colors: UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1).cgColor)
 			seg_control_1.tintColor = UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1)
@@ -359,7 +358,14 @@ class ViewController: UIViewController,
 	func tableView(_ tableView: UITableView,
 	               didDeselectRowAt indexPath: IndexPath)
 	{
-		
+		if seg_control_1.selectedSegmentIndex == 0		/* français */
+		{
+			label_traduction.text = "\(enValues[indexPath.row])"
+		}
+		else											/* englais */
+		{
+			label_traduction.text = "\(frValues[indexPath.row])"
+		}
 	}
 	//===================================================================================
 }
