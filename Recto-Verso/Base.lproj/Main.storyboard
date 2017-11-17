@@ -425,7 +425,7 @@
                                     <segue destination="aJK-8H-2lc" kind="presentation" identifier="seg_view2" id="wQx-Hm-sqy"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="clf-KR-YcW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="clf-KR-YcW">
                                 <rect key="frame" x="17" y="617" width="264" height="30"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
@@ -446,6 +446,7 @@
                             <constraint firstAttribute="bottom" secondItem="mm6-JY-C6J" secondAttribute="top" multiplier="18.5277" id="nEe-5I-5sc"/>
                             <constraint firstAttribute="bottom" secondItem="vAT-MQ-TCq" secondAttribute="top" multiplier="5.1705" id="www-dK-Qhl"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="QMo-dE-tie"/>
                     </view>
                     <connections>
                         <outlet property="a" destination="ICV-IU-nRU" id="4do-93-Nzv"/>
