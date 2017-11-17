@@ -48,6 +48,17 @@ class ViewController: UIViewController,
 	var arrayOfButtons: [UIButton]!
 	var arrayOfFrenchWords: [String]!
 	var arrayOfEnglishWords: [String]!
+	
+	var frKeys = [String]()
+	var enKeys = [String]()
+	var enValues = [String]()
+	var frValues = [String]()
+	
+	var tupleFrenchEnglish = [(String, String)]()
+	var tupleEnglishFrench = [(String, String)]()
+	
+	var dictFrenchEnglish = [String:String]()
+	var dictEnglishFrench = [String:String]()
 	//----------------------------------
 	
 	//===================================== ViewDidLoad =====================================
@@ -62,6 +73,8 @@ class ViewController: UIViewController,
 		loader()
 	//-----------------
 	
+		arrayToDisplay()
+		
 	//-------------------- Styles ----------------------
 		let styles = Styles()
 		
@@ -100,7 +113,7 @@ class ViewController: UIViewController,
 								textAlignment: NSTextAlignment.left,
 								borderWidth: 1.4,
 								borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
-								bgColor: UIColor.init(red: 238/255, green: 237/255, blue: 243/255, alpha: 1).cgColor)
+								bgColor: UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor)
         
         styles.styleUIScrollView(scrollView: scroll_view,
                                  radius: 10,
@@ -128,9 +141,6 @@ class ViewController: UIViewController,
 		                           alpha: 0.5)
 		
 		arrayOfButtons[0].alpha = 1
-		
-		
-		
 	//-----------------------------------------
 	}
 	//=======================================================================================
@@ -198,7 +208,18 @@ class ViewController: UIViewController,
 			default:
 				break
 		}
-		arrayOfButtons[sender.tag].alpha = 1 			/* To hold the button activated */
+		arrayOfButtons[sender.tag].alpha = 1
+		
+		loader()
+		
+		arrayToDisplay()
+		
+		print(dictFrenchEnglish)
+		print(tupleFrenchEnglish)
+		print(frKeys)
+		
+		
+
 	}
 	//=================================================================
 	
@@ -233,10 +254,6 @@ class ViewController: UIViewController,
 			load.save(theData: arrayOfFrenchWords as AnyObject, fileName: "french")
 			load.save(theData: arrayOfEnglishWords as AnyObject, fileName: "english")
 		}
-		
-		
-		
-		//do one check existing files to theses arrays as view2
 	}
 	//============================================================
 	
@@ -264,15 +281,69 @@ class ViewController: UIViewController,
 			                                 colors: UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1).cgColor)
 			seg_control_1.tintColor = UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1)
 		}
+		show_words.reloadData()
 	}
 	
+	//===================================================================================
+	
+	//==================================== Display ======================================
+	func arrayToDisplay()
+	{
+		dictFrenchEnglish = Dictionary(uniqueKeysWithValues: zip(arrayOfFrenchWords, arrayOfEnglishWords))
+		dictEnglishFrench = Dictionary(uniqueKeysWithValues: zip(arrayOfEnglishWords, arrayOfFrenchWords))
+		
+		tupleFrenchEnglish = dictFrenchEnglish.sorted(by: { $0.0 < $1.0 })
+		tupleEnglishFrench = dictEnglishFrench.sorted(by: { $0.0 < $1.0 })
+		
+		var i = 0; while i < 26
+		{
+			if arrayOfButtons[i].alpha == 1
+			{
+				for (fr, en) in tupleFrenchEnglish		/* french loop */
+				{
+					if fr.hasPrefix(arrayOfLetters[i]) == true
+					{
+						frKeys.append(fr)
+						enValues.append(en)
+					}
+					else
+					{
+						let FrMessage = "Il manque des mots avec \(arrayOfLetters[i].lowercased())"
+						frKeys = [FrMessage]
+					}
+				}
+				for (en, fr) in tupleEnglishFrench		/* english loop */
+				{
+					if en.hasPrefix(arrayOfLetters[i]) == true
+					{
+						enKeys.append(en)
+						frValues.append(fr)
+					}
+					else
+					{
+						let EnMessage = "Miss words with \(arrayOfLetters[i].lowercased())"
+						enKeys = [EnMessage]
+					}
+				}
+			}
+			i = i + 1
+		}
+		show_words.reloadData()
+	}
 	//===================================================================================
 
 	//=================================== Table View ====================================
 	func tableView(_ tableView: UITableView,
 	               numberOfRowsInSection section: Int) -> Int
 	{
-		return arrayOfFrenchWords.count
+		if seg_control_1.selectedSegmentIndex == 0		/* français */
+		{
+			return frKeys.count
+		}
+		else											/* englais */
+		{
+			return enKeys.count
+		}
 	}
 	
 	func tableView(_ tableView: UITableView,
@@ -281,67 +352,14 @@ class ViewController: UIViewController,
 		let cell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default,
 		                                           reuseIdentifier: nil)
 		
-		let dictFrenchEnglish = Dictionary(uniqueKeysWithValues: zip(arrayOfFrenchWords, arrayOfEnglishWords))
-		let dictEnglishFrench = Dictionary(uniqueKeysWithValues: zip(arrayOfEnglishWords, arrayOfFrenchWords))
 		
-		let tupleFrenchEnglish = dictFrenchEnglish.sorted(by: { $0.0 < $1.0 })
-		let tupleEnglishFrench = dictEnglishFrench.sorted(by: { $0.0 < $1.0 })
-		
-		var frKeys: [String]!
-		var enKeys: [String]!
-		var enValues: [String]!
-		var frValues: [String]!
-		
-		switch seg_control_1.selectedSegmentIndex
+		if seg_control_1.selectedSegmentIndex == 0		/* français */
 		{
-		case 0:		/* french */
-			for button in arrayOfButtons
-			{
-				for letter in arrayOfLetters
-				{
-					if button.alpha == 1 && button.currentTitle == letter
-					{
-						for ( fr , en ) in tupleFrenchEnglish
-						{
-							if fr.hasPrefix(letter) == true
-							{
-								frKeys.append(fr)
-								enValues.append(en)
-							}
-						}
-					}
-				}
-			}
-		case 1:		/* english */
-			for button in arrayOfButtons
-			{
-				for letter in arrayOfLetters
-				{
-					if button.alpha == 1 && button.currentTitle == letter
-					{
-						for ( en , fr ) in tupleEnglishFrench
-						{
-							if en.hasPrefix(letter) == true
-							{
-								enKeys.append(en)
-								frValues.append(fr)
-							}
-						}
-					}
-				}
-			}
-		default:
-			break
+			cell.textLabel?.text = "\(frKeys[indexPath.row])"
 		}
-		if seg_control_1.selectedSegmentIndex == 0
+		else											/* englais */
 		{
-			let frToTableView = frKeys[indexPath.row]
-			cell.textLabel?.text = "\(frToTableView)"
-		}
-		else
-		{
-			let enToTableView = enKeys[indexPath.row]
-			cell.textLabel?.text = "\(enToTableView)"
+			cell.textLabel?.text = "\(enKeys[indexPath.row])"
 		}
 		return cell
 	}

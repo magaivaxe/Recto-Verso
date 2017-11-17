@@ -215,10 +215,10 @@ class ViewController2: UIViewController,
 		let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default,
 		                                            reuseIdentifier: nil)
 	
-		var frenchToEnglishKey: [String]!			/* Arrays to fill sorted french to english */
-		var frenchToEnglishValue: [String]!
-		var englishToFrenchKey: [String]!			/* Arrays to fill sorted english to french */
-		var englishToFrenchValue: [String]!
+		var frenchToEnglishKey = [String]()			/* Arrays to fill sorted french to english */
+		var frenchToEnglishValue = [String]()
+		var englishToFrenchKey = [String]()			/* Arrays to fill sorted english to french */
+		var englishToFrenchValue = [String]()
 		
 		let dictFrenchEnglish = Dictionary(uniqueKeysWithValues: zip(arrayFrenchWords, arrayEnglishWords))
 		let dictEnglishFrench = Dictionary(uniqueKeysWithValues: zip(arrayEnglishWords, arrayFrenchWords))
