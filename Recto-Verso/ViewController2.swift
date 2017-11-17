@@ -23,6 +23,11 @@ class ViewController2: UIViewController,
 	//----------- Variables ------------
 	var arrayFrenchWords : [String]!
 	var arrayEnglishWords : [String]!
+	
+	var frenchToEnglishKey = [String]()			/* Arrays to fill sorted french to english */
+	var frenchToEnglishValue = [String]()
+	var englishToFrenchKey = [String]()			/* Arrays to fill sorted english to french */
+	var englishToFrenchValue = [String]()
 	//----------------------------------
 
 	//================================== View Did Load ====================================
@@ -101,6 +106,10 @@ class ViewController2: UIViewController,
         add.setTitle("Ajouter", for: .normal)
         go_dictionary.setTitle("Retour", for: .normal)
 	//----------------------------------------------
+	
+	//-- Load table_view's datas --
+		arrayToDisplay()
+	//-----------------------------
 		
     }
 	//===================================================================================
@@ -110,18 +119,20 @@ class ViewController2: UIViewController,
     //----------- Add and save traductions -------------
 	@IBAction func add_words(_ sender: UIButton)
 	{
-		let save = SaveLoadMenager()		/* Load the class locally */
+		let save = SaveLoadMenager()									/* Load the class locally */
 		
 		if (add_french.text == nil || add_french.text == "" ||			/* To avoid eraser the dictionary and table view */
 			add_english.text == nil || add_english.text == "")
 		{
 			if french_button.isHidden == true
 			{
-				alertSimple(title: "Attention!", message: "Il faut ajouter un mot français et d'autre anglais.")
+				alertSimple(title: "Attention!",
+							message: "Il faut ajouter un mot français et d'autre anglais.")
 			}
 			else
 			{
-				alertSimple(title: "Warning!", message: "You have to add a french and other english word.")
+				alertSimple(title: "Warning!",
+							message: "You have to add a french and other english word.")
 			}
 			return
 		}
@@ -133,10 +144,10 @@ class ViewController2: UIViewController,
 			save.save(theData: arrayFrenchWords as AnyObject, fileName: "french")		/* Save the words in the arrays*/
 			save.save(theData: arrayEnglishWords as AnyObject, fileName: "english")
 			
-			add_french.text?.removeAll()		/* After to add clear text fields */
+			add_french.text?.removeAll()					/* After to add clear text fields */
 			add_english.text?.removeAll()
 			
-			table_view.reloadData()				/* Table view new data reload  */
+			arrayToDisplay()								/* Table view new data reload  */
 		}
 	}
     //--------------------------------------------------
@@ -168,7 +179,7 @@ class ViewController2: UIViewController,
         default:
             break
         }
-		table_view.reloadData() 			/* Call the table view function according to case 0 and case 1 */
+		arrayToDisplay()
     }
 	//--------------------------------------------------
 	
@@ -198,27 +209,13 @@ class ViewController2: UIViewController,
 	}
 	//===================================================================================
 	
-	//=================================== Table View ====================================
-	
-	//-------------- Number of cells ---------------
-	func tableView(_ tableView: UITableView,
-	               numberOfRowsInSection section: Int) -> Int
+	//==================================== Display ======================================
+	func arrayToDisplay()
 	{
-		return arrayFrenchWords.count /* Its load the number of elements */
-	}
-	//----------------------------------------------
-	
-	//---------- Show cells information ------------
-	func tableView(_ tableView: UITableView,
-	               cellForRowAt indexPath: IndexPath) -> UITableViewCell
-	{
-		let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default,
-		                                            reuseIdentifier: nil)
-	
-		var frenchToEnglishKey = [String]()			/* Arrays to fill sorted french to english */
-		var frenchToEnglishValue = [String]()
-		var englishToFrenchKey = [String]()			/* Arrays to fill sorted english to french */
-		var englishToFrenchValue = [String]()
+		frenchToEnglishKey.removeAll()				/* French sorted arrays  */
+		frenchToEnglishValue.removeAll()
+		englishToFrenchKey.removeAll()				/* English sorted arrays  */
+		englishToFrenchValue.removeAll()
 		
 		let dictFrenchEnglish = Dictionary(uniqueKeysWithValues: zip(arrayFrenchWords, arrayEnglishWords))
 		let dictEnglishFrench = Dictionary(uniqueKeysWithValues: zip(arrayEnglishWords, arrayFrenchWords))
@@ -226,32 +223,45 @@ class ViewController2: UIViewController,
 		let tupleFrenchSorted = dictFrenchEnglish.sorted(by: {$0.0 < $1.0})		/* Sorted by key french words */
 		let tupleEnglishSorted = dictEnglishFrench.sorted(by: {$0.0 < $1.0})	/* Sorted by key english words */
 		
-		for (key, value) in tupleFrenchSorted		/* Loop to fill a sorted array */
+		for (fr, en) in tupleFrenchSorted			/* Loop to fill a sorted array */
 		{
-			frenchToEnglishKey.append(key)			/* French sorted arrays  */
-			frenchToEnglishValue.append(value)
+			frenchToEnglishKey.append(fr)			/* French sorted arrays  */
+			frenchToEnglishValue.append(en)
 		}
 		
-		for (key, value) in tupleEnglishSorted
+		for (en, fr) in tupleEnglishSorted
 		{
-			englishToFrenchKey.append(key)			/* English sorted arrays  */
-			englishToFrenchValue.append(value)
+			englishToFrenchKey.append(en)			/* English sorted arrays  */
+			englishToFrenchValue.append(fr)
 		}
-		
-		let frenchToEnglishKeyIsFrench = frenchToEnglishKey[indexPath.row]
-		let frenchToEnglishValueIsEnglish = frenchToEnglishValue[indexPath.row]
-		
-		let englishToFrenchKeyIsEnglish = englishToFrenchKey[indexPath.row]
-		let englishToFrenchValueIsFrench = englishToFrenchValue[indexPath.row]
-
-		
+		table_view.reloadData()
+	}
+	//===================================================================================
+	
+	//=================================== Table View ====================================
+	
+	//-------------- Number of cells ---------------
+	func tableView(_ tableView: UITableView,
+	               numberOfRowsInSection section: Int) -> Int
+	{
+		return frenchToEnglishKey.count 			/* Its load the number of elements */
+	}
+	//----------------------------------------------
+	
+	//------------- Show cells datas ---------------
+	func tableView(_ tableView: UITableView,
+	               cellForRowAt indexPath: IndexPath) -> UITableViewCell
+	{
+		let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default,
+		                                            reuseIdentifier: nil)
+	
 		if french_button.isHidden == true	/* french */
 		{
-			cell.textLabel?.text = "\(frenchToEnglishKeyIsFrench) => \(frenchToEnglishValueIsEnglish)"
+			cell.textLabel?.text = "\(frenchToEnglishKey[indexPath.row]) => \(frenchToEnglishValue[indexPath.row])"
 		}
 		else								/* english */
 		{
-			cell.textLabel?.text = "\(englishToFrenchKeyIsEnglish) => \(englishToFrenchValueIsFrench)"
+			cell.textLabel?.text = "\(englishToFrenchKey[indexPath.row]) => \(englishToFrenchValue[indexPath.row])"
 		}
 		return cell
 	}
@@ -274,8 +284,26 @@ class ViewController2: UIViewController,
 		
 		if editingStyle == UITableViewCellEditingStyle.delete
 		{
-			arrayFrenchWords.remove(at: indexPath.row)
-			arrayEnglishWords.remove(at: indexPath.row)
+			var j = 0; while j < arrayFrenchWords.count
+			{
+				if frenchToEnglishKey[indexPath.row] == arrayFrenchWords[j]
+				{
+					arrayFrenchWords.remove(at: j)
+					arrayEnglishWords.remove(at: j)
+				}
+				j = j + 1
+			}
+			
+			if french_button.isHidden == true			/* french instantly update */
+			{
+				frenchToEnglishKey.remove(at: indexPath.row)
+				frenchToEnglishValue.remove(at: indexPath.row)
+			}
+			else										/* english instantly update */
+			{
+				englishToFrenchKey.remove(at: indexPath.row)
+				englishToFrenchValue.remove(at: indexPath.row)
+			}
 			
 			save.save(theData: arrayFrenchWords as AnyObject, fileName: "french")
 			save.save(theData: arrayEnglishWords as AnyObject, fileName: "english")
@@ -287,7 +315,7 @@ class ViewController2: UIViewController,
 	
 	//===================================================================================
 	
-	//================ Keyboard =================
+	//==================================== Keyboard =====================================
 	
 	//----- Touches begin anything -----
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
@@ -304,9 +332,9 @@ class ViewController2: UIViewController,
 	}
 	//----------------------------------
 	
-	//===========================================
+	//===================================================================================
 	
-	//================= Alerts ==================
+	//=================================== Alerts ========================================
 	func alertSimple(title t: String, message m: String)
 	{
 		let alert = UIAlertController(title: t, message: m, preferredStyle: UIAlertControllerStyle.alert)
@@ -319,7 +347,7 @@ class ViewController2: UIViewController,
 		//-----------
 		self.present(alert, animated: true, completion: nil)
 	}
-	//===========================================
+	//===================================================================================
 }
 
 

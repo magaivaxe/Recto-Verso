@@ -53,12 +53,6 @@ class ViewController: UIViewController,
 	var enKeys = [String]()
 	var enValues = [String]()
 	var frValues = [String]()
-	
-	var tupleFrenchEnglish = [(String, String)]()
-	var tupleEnglishFrench = [(String, String)]()
-	
-	var dictFrenchEnglish = [String:String]()
-	var dictEnglishFrench = [String:String]()
 	//----------------------------------
 	
 	//===================================== ViewDidLoad =====================================
@@ -283,11 +277,11 @@ class ViewController: UIViewController,
 	//==================================== Display ======================================
 	func arrayToDisplay()
 	{
-		dictFrenchEnglish = Dictionary(uniqueKeysWithValues: zip(arrayOfFrenchWords, arrayOfEnglishWords))
-		dictEnglishFrench = Dictionary(uniqueKeysWithValues: zip(arrayOfEnglishWords, arrayOfFrenchWords))
+		let dictFrenchEnglish = Dictionary(uniqueKeysWithValues: zip(arrayOfFrenchWords, arrayOfEnglishWords))
+		let dictEnglishFrench = Dictionary(uniqueKeysWithValues: zip(arrayOfEnglishWords, arrayOfFrenchWords))
 		
-		tupleFrenchEnglish = dictFrenchEnglish.sorted(by: { $0.0 < $1.0 })
-		tupleEnglishFrench = dictEnglishFrench.sorted(by: { $0.0 < $1.0 })
+		let tupleFrenchEnglish = dictFrenchEnglish.sorted(by: { $0.0 < $1.0 })
+		let tupleEnglishFrench = dictEnglishFrench.sorted(by: { $0.0 < $1.0 })
 		
 		frKeys.removeAll()
 		enValues.removeAll()
@@ -298,23 +292,31 @@ class ViewController: UIViewController,
 		{
 			if arrayOfButtons[i].alpha == 1
 			{
-				//French filter by first string letter in [i].0
+				//Tuple filter by first string word character in [i].0
 				let tupleFrenchEnglishFiltered = tupleFrenchEnglish.filter({$0.0.hasPrefix(arrayOfLetters[i].lowercased())})
+				let tupleEnglishFrenchFiltered = tupleEnglishFrench.filter({$0.0.hasPrefix(arrayOfLetters[i].lowercased())})
 				
 				for (fr, en) in tupleFrenchEnglishFiltered		/* french loop */
 				{
 					frKeys.append(fr)
 					enValues.append(en)
 				}
-				//English filter by first string letter in [i].0
-				let tupleEnglishFrenchFiltered = tupleEnglishFrench.filter({$0.0.hasPrefix(arrayOfLetters[i].lowercased())})
+				if frKeys == []
+				{
+					frKeys.append("il en manque avec «\(arrayOfLetters[i])»")
+					enValues.append("Mes excuses...")
+				}
 				
 				for (en, fr) in tupleEnglishFrenchFiltered		/* english loop */
 				{
 					enKeys.append(en)
 					frValues.append(fr)
 				}
-				
+				if enKeys == []
+				{
+					enKeys.append("No words with «\(arrayOfLetters[i])» yet")
+					frValues.append("My apologies...")
+				}
 			}
 			i = i + 1
 		}
