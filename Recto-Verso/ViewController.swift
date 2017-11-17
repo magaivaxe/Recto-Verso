@@ -217,9 +217,6 @@ class ViewController: UIViewController,
 		print(dictFrenchEnglish)
 		print(tupleFrenchEnglish)
 		print(frKeys)
-		
-		
-
 	}
 	//=================================================================
 	
