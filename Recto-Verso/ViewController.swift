@@ -73,8 +73,6 @@ class ViewController: UIViewController,
 		loader()
 	//-----------------
 	
-		arrayToDisplay()
-		
 	//-------------------- Styles ----------------------
 		let styles = Styles()
 		
@@ -141,6 +139,8 @@ class ViewController: UIViewController,
 		                           alpha: 0.5)
 		
 		arrayOfButtons[0].alpha = 1
+		
+		arrayToDisplay()
 	//-----------------------------------------
 	}
 	//=======================================================================================
@@ -214,12 +214,6 @@ class ViewController: UIViewController,
 		
 		arrayToDisplay()
 		
-		print(dictFrenchEnglish)
-		print(tupleFrenchEnglish)
-		print(frKeys)
-		
-		
-
 	}
 	//=================================================================
 	
@@ -295,36 +289,32 @@ class ViewController: UIViewController,
 		tupleFrenchEnglish = dictFrenchEnglish.sorted(by: { $0.0 < $1.0 })
 		tupleEnglishFrench = dictEnglishFrench.sorted(by: { $0.0 < $1.0 })
 		
+		frKeys.removeAll()
+		enValues.removeAll()
+		enKeys.removeAll()
+		frValues.removeAll()
+		
 		var i = 0; while i < 26
 		{
 			if arrayOfButtons[i].alpha == 1
 			{
-				for (fr, en) in tupleFrenchEnglish		/* french loop */
+				//French filter by first string letter in [i].0
+				let tupleFrenchEnglishFiltered = tupleFrenchEnglish.filter({$0.0.hasPrefix(arrayOfLetters[i].lowercased())})
+				
+				for (fr, en) in tupleFrenchEnglishFiltered		/* french loop */
 				{
-					if fr.hasPrefix(arrayOfLetters[i]) == true
-					{
-						frKeys.append(fr)
-						enValues.append(en)
-					}
-					else
-					{
-						let FrMessage = "Il manque des mots avec \(arrayOfLetters[i].lowercased())"
-						frKeys = [FrMessage]
-					}
+					frKeys.append(fr)
+					enValues.append(en)
 				}
-				for (en, fr) in tupleEnglishFrench		/* english loop */
+				//English filter by first string letter in [i].0
+				let tupleEnglishFrenchFiltered = tupleEnglishFrench.filter({$0.0.hasPrefix(arrayOfLetters[i].lowercased())})
+				
+				for (en, fr) in tupleEnglishFrenchFiltered		/* english loop */
 				{
-					if en.hasPrefix(arrayOfLetters[i]) == true
-					{
-						enKeys.append(en)
-						frValues.append(fr)
-					}
-					else
-					{
-						let EnMessage = "Miss words with \(arrayOfLetters[i].lowercased())"
-						enKeys = [EnMessage]
-					}
+					enKeys.append(en)
+					frValues.append(fr)
 				}
+				
 			}
 			i = i + 1
 		}
