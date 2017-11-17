@@ -107,6 +107,23 @@ class Styles
 		tv.layer.borderColor = bc
 		tv.layer.backgroundColor = bg
 	}
+	
+	func styleUILabel(label l: UILabel,
+					  font f: UIFont,
+					  textAlignment ta: NSTextAlignment,
+					  radius r: CGFloat,
+					  borderWidth bw: CGFloat,
+					  borderColor bc: CGColor,
+					  bgColor bg: CGColor?)
+	{
+		l.clipsToBounds = true
+		l.font = f
+		l.textAlignment = ta
+		l.layer.cornerRadius = r
+		l.layer.borderWidth = bw
+		l.layer.borderColor = bc
+		l.layer.backgroundColor = bg
+	}
 	//------------------
 	
 	//====================== The views ======================

@@ -10,7 +10,7 @@ class ViewController: UIViewController,
 	@IBOutlet weak var go_insert_words: UIButton!
 	@IBOutlet weak var seg_control_1: UISegmentedControl!
     @IBOutlet weak var scroll_view: UIScrollView!
-	@IBOutlet weak var traduction: UITextView!
+	@IBOutlet weak var label_traduction: UILabel!
 	@IBOutlet weak var scroll_of_buttons: UIScrollView!
 	@IBOutlet weak var view_of_buttons: UIView!
 	@IBOutlet weak var show_words: UITableView!
@@ -54,11 +54,8 @@ class ViewController: UIViewController,
 	var enValues = [String]()
 	var frValues = [String]()
 	
-	var tupleFrenchEnglish = [(String, String)]()
-	var tupleEnglishFrench = [(String, String)]()
-	
-	var dictFrenchEnglish = [String:String]()
-	var dictEnglishFrench = [String:String]()
+	var tupleFrenchEnglishFiltered: [(String,String)]!
+	var tupleEnglishFrenchFiltered: [(String,String)]!
 	//----------------------------------
 	
 	//===================================== ViewDidLoad =====================================
@@ -73,8 +70,6 @@ class ViewController: UIViewController,
 		loader()
 	//-----------------
 	
-		arrayToDisplay()
-		
 	//-------------------- Styles ----------------------
 		let styles = Styles()
 		
@@ -106,15 +101,14 @@ class ViewController: UIViewController,
 									   borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
 									   bgColor: UIColor.init(red: 238/255, green: 237/255, blue: 243/255, alpha: 1).cgColor)
 		
-		styles.styleUITextViews(textView: traduction,
-								radius: 10,
-								font: UIFont(name: "Menlo", size: 20)!,
-								textColor: UIColor.white,
-								textAlignment: NSTextAlignment.left,
-								borderWidth: 1.4,
-								borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
-								bgColor: UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor)
-        
+		styles.styleUILabel(label: label_traduction,
+							font: UIFont.systemFont(ofSize: 15),
+							textAlignment: NSTextAlignment.center,
+							radius: 10,
+							borderWidth: 1.4,
+							borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
+							bgColor: UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor)
+		
         styles.styleUIScrollView(scrollView: scroll_view,
                                  radius: 10,
                                  borderWidth: 1.4,
@@ -127,9 +121,8 @@ class ViewController: UIViewController,
 		                        borderColor: UIColor.init(red: 206/255, green: 205/255, blue: 210/255, alpha: 1).cgColor,
 							 	bgColor: UIColor.init(red: 238/255, green: 237/255, blue: 243/255, alpha: 1).cgColor)
 		
-	//-------------------- Styles ----------------------
+	//--------------------------------------------------
 	
-		
 	//---------- Set text to buttons ---------
 		let setText = ToSetAny()
 		
@@ -141,6 +134,9 @@ class ViewController: UIViewController,
 		                           alpha: 0.5)
 		
 		arrayOfButtons[0].alpha = 1
+		label_traduction.text = ""
+		
+		arrayToDisplay()
 	//-----------------------------------------
 	}
 	//=======================================================================================
@@ -264,7 +260,7 @@ class ViewController: UIViewController,
 		{
 			go_insert_words.setTitle("+ Mots", for: .normal)
 			go_insert_words.layer.backgroundColor = UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor
-			traduction.layer.backgroundColor = UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor
+			label_traduction.layer.backgroundColor = UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor
 			buttonColor.styleColorsOfButtons(arrayOfButtons: arrayOfButtons,
 			                                 colors: UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1).cgColor)
 			seg_control_1.tintColor = UIColor.init(red: 21/255, green: 126/255, blue: 250/255, alpha: 1)
@@ -273,12 +269,12 @@ class ViewController: UIViewController,
 		{
 			go_insert_words.setTitle("+ Words", for: .normal)
 			go_insert_words.layer.backgroundColor = UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1).cgColor
-			traduction.layer.backgroundColor = UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1).cgColor
+			label_traduction.layer.backgroundColor = UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1).cgColor
 			buttonColor.styleColorsOfButtons(arrayOfButtons: arrayOfButtons,
 			                                 colors: UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1).cgColor)
 			seg_control_1.tintColor = UIColor.init(red: 252/255, green: 61/255, blue: 56/255, alpha: 1)
 		}
-		show_words.reloadData()
+		arrayToDisplay()
 	}
 	
 	//===================================================================================
@@ -286,45 +282,51 @@ class ViewController: UIViewController,
 	//==================================== Display ======================================
 	func arrayToDisplay()
 	{
-		dictFrenchEnglish = Dictionary(uniqueKeysWithValues: zip(arrayOfFrenchWords, arrayOfEnglishWords))
-		dictEnglishFrench = Dictionary(uniqueKeysWithValues: zip(arrayOfEnglishWords, arrayOfFrenchWords))
+		let dictFrenchEnglish = Dictionary(uniqueKeysWithValues: zip(arrayOfFrenchWords, arrayOfEnglishWords))
+		let dictEnglishFrench = Dictionary(uniqueKeysWithValues: zip(arrayOfEnglishWords, arrayOfFrenchWords))
 		
-		tupleFrenchEnglish = dictFrenchEnglish.sorted(by: { $0.0 < $1.0 })
-		tupleEnglishFrench = dictEnglishFrench.sorted(by: { $0.0 < $1.0 })
+		let tupleFrenchEnglish = dictFrenchEnglish.sorted(by: { $0.0 < $1.0 })
+		let tupleEnglishFrench = dictEnglishFrench.sorted(by: { $0.0 < $1.0 })
+		
+		frKeys.removeAll()			/* to avoid arrays concatenations */
+		enValues.removeAll()
+		enKeys.removeAll()
+		frValues.removeAll()
 		
 		var i = 0; while i < 26
 		{
 			if arrayOfButtons[i].alpha == 1
 			{
-				for (fr, en) in tupleFrenchEnglish		/* french loop */
+				//Tuple filter by first string word character in [i].0
+				tupleFrenchEnglishFiltered = tupleFrenchEnglish.filter({$0.0.hasPrefix(arrayOfLetters[i].lowercased())})
+				tupleEnglishFrenchFiltered = tupleEnglishFrench.filter({$0.0.hasPrefix(arrayOfLetters[i].lowercased())})
+				
+				for (fr1, en1) in tupleFrenchEnglishFiltered		/* french loop */
 				{
-					if fr.hasPrefix(arrayOfLetters[i]) == true
-					{
-						frKeys.append(fr)
-						enValues.append(en)
-					}
-					else
-					{
-						let FrMessage = "Il manque des mots avec \(arrayOfLetters[i].lowercased())"
-						frKeys = [FrMessage]
-					}
+					frKeys.append(fr1)
+					enValues.append(en1)
 				}
-				for (en, fr) in tupleEnglishFrench		/* english loop */
+				if frKeys == []
 				{
-					if en.hasPrefix(arrayOfLetters[i]) == true
-					{
-						enKeys.append(en)
-						frValues.append(fr)
-					}
-					else
-					{
-						let EnMessage = "Miss words with \(arrayOfLetters[i].lowercased())"
-						enKeys = [EnMessage]
-					}
+					frKeys.append("il en manque avec «\(arrayOfLetters[i])»")
+					enValues.append("Mes excuses...")
+				}
+				
+				for (en2, fr2) in tupleEnglishFrenchFiltered		/* english loop */
+				{
+					enKeys.append(en2)
+					frValues.append(fr2)
+				}
+				if enKeys == []
+				{
+					enKeys.append("No words with «\(arrayOfLetters[i])» yet")
+					frValues.append("My apologies...")
 				}
 			}
 			i = i + 1
 		}
+		print(frKeys)
+		print(enValues)
 		show_words.reloadData()
 	}
 	//===================================================================================
@@ -365,6 +367,14 @@ class ViewController: UIViewController,
 	               didDeselectRowAt indexPath: IndexPath)
 	{
 		
+		if seg_control_1.selectedSegmentIndex == 0		/* français */
+		{
+			label_traduction.text? = "\(enValues[indexPath.row])"
+		}
+		else											/* englais */
+		{
+			label_traduction.text? = "\(frValues[indexPath.row])"
+		}
 	}
 	//===================================================================================
 }
